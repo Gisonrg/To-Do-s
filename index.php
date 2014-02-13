@@ -1,6 +1,19 @@
-<?php require("view/header.inc");
+<?php 
 
-	showHeader("Home Page");
+require("view/header.inc");
+require("view/footer.inc");
+showHeader("Home Page");
+
+
+
+
+
+
+
+
+
+
+
+showFooter();
 ?>
 
-<?php require("view/footer.inc"); ?>

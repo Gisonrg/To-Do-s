@@ -10,8 +10,11 @@
 				<title><?php echo "$title" ?></title>
 			</head>
 			<body>
-				<h1>Test Header</h1>
-			</body>
-		</html>
 		<?php
-	}?>
+	}
+
+	
+
+?>
+
+
