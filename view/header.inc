@@ -7,7 +7,7 @@
 		<html lang="en">
 			<head>
 				<meta charset="utf-8">
-				<title><?php $title ?></title>
+				<title><?php echo "$title" ?></title>
 			</head>
 			<body>
 				<h1>Test Header</h1>
