@@ -1,8 +1,6 @@
-ccccccccccc
-sdadas
+<?php require("view/header.inc");
 
-s
-ds
-da
-s
-ds
+	showHeader("Home Page");
+?>
+
+<?php require("view/footer.inc"); ?>
