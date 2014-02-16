@@ -41,6 +41,7 @@ switch ($_SESSION['mode']) {
 		break;
 	case 'access_denied':
 		echo "You have already logged in!";
+		header('Location: index.php');
 		break;
 	default:
 		# code...
