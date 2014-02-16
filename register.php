@@ -36,6 +36,8 @@ switch ($_SESSION['mode']) {
 				echo "Register successfully! You have now logged in as ".$_POST['name'];
 			} else {
 				echo "Error: Register unsuccessfully! Please try again";
+				$_SESSION['mode'] = 'register';
+				require("view/register.inc");
 			}
 		}
 		break;

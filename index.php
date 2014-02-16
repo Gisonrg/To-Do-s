@@ -9,8 +9,15 @@ require("view/footer.inc");
 
 
 showHeader("Home Page");
+if (isset($_SESSION['valid_user_id'])) {
+    showBar($_SESSION['valid_user_id']);
+}
+echo "<div class=\"content\">";
 
 
+	echo "hahahahaa";
+
+echo "</div>";
 
 
 

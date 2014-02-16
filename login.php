@@ -36,8 +36,10 @@ switch ($_SESSION['mode']) {
 				$_SESSION['valid_user_id'] = $register_result;
 				echo "Login successfully! You have now logged in as ".$_POST['name'];
 			} else {
-				echo $register_result;
+				// echo $register_result;
 				echo "Error: Login unsuccessfully! Please try again";
+				$_SESSION['mode'] = 'login';
+				require('view/login.inc');
 			}
 		}
 		break;
