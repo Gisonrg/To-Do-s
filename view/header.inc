@@ -2,6 +2,7 @@
 <?php 
 	// showHeader($title)
 	function showHeader($title) {
+		require("userBar.inc");
 		?>
 		<!DOCTYPE html>
 		<html lang="en">
@@ -34,12 +35,14 @@
 					echo '<li><a href="task.php">Task</a></li>';
               	}
 
-                if (isset($_SESSION['user'])){
+                if (isset($_SESSION['userID'])){
                 	if ($title == 'Logout') {
 	              		echo '<li class="active"><a href="logout.php">Logout</a></li>';
 	              	} else {
 						echo '<li><a href="logout.php">Logout</a></li>';
-	              	}	                
+	              	}
+
+	              	showBar($_SESSION['userID']);
                 } else {
                 	if ($title == 'Login') {
 	              		echo '<li class="active"><a href="login.php">Login</a></li>';
