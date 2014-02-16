@@ -5,7 +5,6 @@ require_once("config/config.inc");
 
 // parameter: $id userID and $pwd password
 // return: 0: login successful 1:invalid pwd 2:user does not exist
-
 function db_connect() {
 	$dbconn = pg_connect("host=".DB_HOST." port=".DB_PORT." dbname=".DB_NAME." user=".DB_USERNAME." password=".DB_PASSWORD);
 	if(!$dbconn){
@@ -15,20 +14,35 @@ function db_connect() {
 	return $dbconn;
 }
 
-function user_register() {
+function user_register($name, $password, $email) {
 	$dbconn = db_connect();
-	$result = pg_prepare($dbconn, "my_query", 'SELECT * FROM shops WHERE name = $1');
+	$result = pg_prepare($dbconn, "my_query", 'SELECT * FROM users WHERE name = $1 and email = $2');
+	// $result=pg_query($dbconn, "select * from users;");
 
-	// Execute the prepared query.  Note that it is not necessary to escape
-	// the string "Joe's Widgets" in any way
-	$result = pg_execute($dbconn, "my_query", array("Joe's Widgets"));
+	// check if the name or email has been registered
+	$result = pg_execute($dbconn, "my_query", array($name, $email));
 
-	// Execute the same prepared query, this time with a different parameter
-	$result = pg_execute($dbconn, "my_query", array("Clothes Clothes Clothes"));
-
-
-
-
+	if($result){
+		if (pg_affected_rows($result) ==0) {
+			$result = pg_prepare($dbconn, "register", 'insert into users values(nextval(\'users_id_seq\'), $1 , $2 ,1,0, $3 )');
+			$result = pg_execute($dbconn, "register", array($name, $password,$email));
+			if($result){
+				if (pg_affected_rows($result)==1) {
+					$result = pg_prepare($dbconn, "get_id", 'select * from users WHERE name = $1 and email = $2');
+					$result = pg_execute($dbconn, "get_id", array($name, $email));
+				}
+			} else {
+				echo("Could not execute query");
+				return false;
+			}
+		} else {
+			echo "Your username or email has already been registered!";
+			return false;
+		}
+	} else {
+		echo("Could not execute query");
+		return false;
+	}
 
 }
 
