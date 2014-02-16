@@ -1,4 +1,4 @@
-<form method="post" action="">
+<form method="post" action="register.php">
   <h2>New User Register</h2>
  
   <label for="name">User Name</label>
@@ -10,14 +10,11 @@
   <label for="password">Password</label>
   <input type="password" id="password" name="password" placeholder="Password" required="">
   <br/>
-  <label for="repassword">Re-type Password</label>
-  <input type="password" id="repassword" name="repassword" placeholder="Re-type Your Password" required="">
-  <br/>  
   
 
 
-  <input type="submit" value="Submit">
-  <input type="submit" value="Reset">
+  <input type="submit" name="submit" value="Submit">
+  <input type="submit" name="submit" value="Reset">
 </form>
 
 

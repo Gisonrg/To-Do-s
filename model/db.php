@@ -1,7 +1,7 @@
 <!--db.php-->
 <?php
 
-require("config/config.inc");
+require_once("config/config.inc");
 
 // parameter: $id userID and $pwd password
 // return: 0: login successful 1:invalid pwd 2:user does not exist
@@ -12,11 +12,30 @@ function db_connect() {
 		echo("Can't connect to the database");	
 		exit;
 	}
+	return $dbconn;
+}
+
+function user_register() {
+	$dbconn = db_connect();
+	$result = pg_prepare($dbconn, "my_query", 'SELECT * FROM shops WHERE name = $1');
+
+	// Execute the prepared query.  Note that it is not necessary to escape
+	// the string "Joe's Widgets" in any way
+	$result = pg_execute($dbconn, "my_query", array("Joe's Widgets"));
+
+	// Execute the same prepared query, this time with a different parameter
+	$result = pg_execute($dbconn, "my_query", array("Clothes Clothes Clothes"));
+
+
+
+
+
 }
 
 
+
 function user_authenticate($id, $pwd) {
-	db_connect();
+	$dbconn = db_connect();
 	$query="SELECT * FROM users WHERE id='$id';";
 	$result=pg_query($dbconn, $query);
 
