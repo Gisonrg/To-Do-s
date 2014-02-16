@@ -27,4 +27,6 @@
 				<td><a href="logout.php">Log Out</a></td>
 			</tr>
 		</table>
+		<?php
 	}
+?>
