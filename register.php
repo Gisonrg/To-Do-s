@@ -33,7 +33,7 @@ switch ($_SESSION['mode']) {
 			$register_result = user_register($_POST['name'],sha1($_POST['password']),$_POST['email']);
 			if ($register_result) {
 				$_SESSION['valid_user_id'] = $register_result;
-				echo "Register successfully! You have now logged in as".$_POST['name'];
+				echo "Register successfully! You have now logged in as ".$_POST['name'];
 			} else {
 				echo "Error: Register unsuccessfully! Please try again";
 			}
