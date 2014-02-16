@@ -1,69 +1,74 @@
 <!--header.inc-->
 <?php 
+	require("userBar.inc");
 	// showHeader($title)
 	function showHeader($title) {
-		require("userBar.inc");
-		?>
+	?>
 		<!DOCTYPE html>
 		<html lang="en">
 			<head>
 				<meta charset="utf-8">
 				<title><?php echo "$title" ?></title>
+				<link rel="stylesheet" type="text/css" href="static/css/style.css">
 			</head>
 			<body>
+        <?php show_nav($title);?>
+        <div class="container">
+          <h1>Test！</h1>
 
-			<ul>
-              	<?php 
-              	if ($title == 'Homepage') {
-              		echo '<li class="active"><a href="index.php">Home</a></li>';
-              	} else {
-					echo '<li><a href="index.php">Home</a></li>';
-              	}
-				if ($title == 'Contact') {
-              		echo '<li class="active"><a href="contact.php">Contact</a></li>';
-              	} else {
-					echo '<li><a href="contact.php">Contact</a></li>';
-              	}	       
-              	if ($title == 'Account') {
-              		echo '<li class="active"><a href="account.php">Account</a></li>';
-              	} else {
-					echo '<li><a href="account.php">Account</a></li>';
-              	}
-              	if ($title == 'Task') {
-              		echo '<li class="active"><a href="task.php">Task</a></li>';
-              	} else {
-					echo '<li><a href="task.php">Task</a></li>';
-              	}
 
-                if (isset($_SESSION['valid_user_id'])){
-                	if ($title == 'Logout') {
-	              		echo '<li class="active"><a href="logout.php">Logout</a></li>';
-	              	} else {
-						echo '<li><a href="logout.php">Logout</a></li>';
-	              	}
 
-	              	showBar($_SESSION['valid_user_id']);
-                } else {
-                	if ($title == 'Login') {
-	              		echo '<li class="active"><a href="login.php">Login</a></li>';
-	              	} else {
-						echo '<li><a href="login.php">Login</a></li>';
-	              	}
+  <?php
+  
 
-	              	if ($title == 'Signup') {
-	              		echo '<li class="active"><a href="register.php">Sign Up</a></li>';
-	              	} else {
-						echo '<li><a href="register.php">Sign Up</a></li>';
-	              	}
-                }
-
-                ?>
-              </ul>
-		<?php
 	}
 
-	
 
+
+	function show_nav($title) {
+		echo "<nav>";
+      	if ($title == 'Home Page') {
+      		echo '<a class="active" href="index.php">Home</a>';
+      	} else {
+			echo '<a href="index.php">Home</a>';
+      	}
+		if ($title == 'Contact') {
+      		echo '<a class="active" href="contact.php">Contact</a>';
+      	} else {
+			echo '<a href="contact.php">Contact</a>';
+      	}	       
+      	if ($title == 'Account') {
+      		echo '<a class="active" href="account.php">Account</a>';
+      	} else {
+			echo '<a href="account.php">Account</a>';
+      	}
+      	if ($title == 'Task') {
+      		echo '<a class="active" href="task.php">Task</a>';
+      	} else {
+			echo '<a href="task.php">Task</a>';
+      	}
+
+        if (isset($_SESSION['valid_user_id'])){
+        	if ($title == 'Logout') {
+          		echo '<a class="active" href="logout.php">Logout</a>';
+          	} else {
+				echo '<a href="logout.php">Logout</a>';
+          	}
+        } else {
+        	if ($title == 'Login') {
+          		echo '<a class="active" href="login.php">Login</a>';
+          	} else {
+				echo '<a href="login.php">Login</a>';
+          	}
+
+          	if ($title == 'Register') {
+          		echo '<a class="active" href="register.php">Sign Up</a>';
+          	} else {
+				echo '<a href="register.php">Sign Up</a>';
+          	}
+        }
+        echo "</nav>";
+	}
 ?>
 
 
