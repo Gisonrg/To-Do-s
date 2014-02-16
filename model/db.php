@@ -3,8 +3,7 @@
 
 require_once("config/config.inc");
 
-// parameter: $id userID and $pwd password
-// return: 0: login successful 1:invalid pwd 2:user does not exist
+
 function db_connect() {
 	$dbconn = pg_connect("host=".DB_HOST." port=".DB_PORT." dbname=".DB_NAME." user=".DB_USERNAME." password=".DB_PASSWORD);
 	if(!$dbconn){
@@ -49,26 +48,25 @@ function user_register($name, $password, $email) {
 }
 
 
-function user_authenticate($id, $pwd) {
+function user_authenticate($name, $pwd) {
 	$dbconn = db_connect();
-	$query="SELECT * FROM users WHERE id='$id';";
-	$result=pg_query($dbconn, $query);
-	$result = pg_prepare($dbconn, "my_query", 'SELECT * FROM users WHERE id = $1');
-	$result = pg_execute($dbconn, "my_query", array("$id"));
+;
+	$result = pg_prepare($dbconn, "my_query", 'SELECT * FROM users WHERE name = $1');
+	$result = pg_execute($dbconn, "my_query", array("$name"));
 
 
 	$flag = 0;
 	while ($row = pg_fetch_array($result)) {
 		$flag = 1;
-		if ($row[password] == $pwd) {
-			return 0; //success
+		if ($row['password'] == $pwd) {
+			return $row['id']; //success
 		}
 	}
 
 	if ($flag == 1) {
-		return 1; //invalid password
+		return -1; //invalid password
 	} else {
-		return 2; //does not exit
+		return -2; //does not exit
 	}
 }
 
