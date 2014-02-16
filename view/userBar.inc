@@ -2,7 +2,7 @@
 <?php
 	// showBar($id)
 	function showBar($id) {
-		require_once("../model/db.php");
+		require_once("model/db.php");
 		$row = retrieve_user_info($_SESSION['userID']);
 		?>
 		<table>
@@ -12,7 +12,7 @@
 
 			<tr>
 				<td>User name</td>
-				<td><?php echo($row['username']) ?></td>
+				<td><?php echo($row['name']) ?></td>
 			</tr>
 			<tr>
 				<td>Level</td>
