@@ -8,7 +8,6 @@ require("view/header.inc");
 require("view/footer.inc");
 
 
-$_SESSION['userID'] = 1;
 
 showHeader("Home Page");
 
