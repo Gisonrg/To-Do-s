@@ -3,7 +3,7 @@
 	// showBar($id)
 	function showBar($id) {
 		require_once("model/db.php");
-		$row = retrieve_user_info($_SESSION['userID']);
+		$row = retrieve_user_info($_SESSION['valid_user_id']);
 		?>
 		<table>
 			<tr>
@@ -20,7 +20,7 @@
 			</tr>
 			<tr>
 				<td>EXP</td>
-				<td><?php echo($row['exp']) ?></td>
+				<td><?php echo($row['exp'].'/'.$row['level']*20) ?></td>
 			</tr>
 			<tr>
 				<td><a href="task.php">Manage my tasks</a></td>
