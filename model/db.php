@@ -38,6 +38,9 @@ function user_authenticate($id, $pwd) {
 	$dbconn = db_connect();
 	$query="SELECT * FROM users WHERE id='$id';";
 	$result=pg_query($dbconn, $query);
+	$result = pg_prepare($dbconn, "my_query", 'SELECT * FROM users WHERE id = $1');
+	$result = pg_execute($dbconn, "my_query", array("$id"));
+
 
 	$flag = 0;
 	while ($row = pg_fetch_array($result)) {
@@ -51,6 +54,20 @@ function user_authenticate($id, $pwd) {
 		return 1; //invalid password
 	} else {
 		return 2; //does not exit
+	}
+}
+
+
+function retrieve_user_info($id) {
+	db_connect();
+	$result = pg_prepare($dbconn, "my_query", 'SELECT * FROM users WHERE id = $1');
+	$result = pg_execute($dbconn, "my_query", array("$id"));
+
+	if(!$result) {
+		echo("Cannot retrieve");
+		exit;
+	} else {
+		return pg_fetch_array($result);
 	}
 }
 
