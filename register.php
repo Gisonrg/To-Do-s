@@ -30,8 +30,17 @@ switch ($_SESSION['mode']) {
 		break;
 	case 'register_result':
 		if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password'])) {
-			user_register($_POST['name'],sha1($_POST['password']),$_POST['email']);
+			$register_result = user_register($_POST['name'],sha1($_POST['password']),$_POST['email']);
+			if ($register_result) {
+				$_SESSION['valid_user_id'] = $register_result;
+				echo "Register successfully! You have now logged in as".$_POST['name'];
+			} else {
+				echo "Error: Register unsuccessfully! Please try again";
+			}
 		}
+		break;
+	case 'access_denied':
+		echo "You have already logged in!";
 		break;
 	default:
 		# code...

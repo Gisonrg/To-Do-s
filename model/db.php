@@ -27,10 +27,12 @@ function user_register($name, $password, $email) {
 			$result = pg_prepare($dbconn, "register", 'insert into users values(nextval(\'users_id_seq\'), $1 , $2 ,1,0, $3 )');
 			$result = pg_execute($dbconn, "register", array($name, $password,$email));
 			if($result){
-				if (pg_affected_rows($result)==1) {
-					$result = pg_prepare($dbconn, "get_id", 'select * from users WHERE name = $1 and email = $2');
-					$result = pg_execute($dbconn, "get_id", array($name, $email));
-				}
+				$result = pg_prepare($dbconn, "get_id", 'SELECT * FROM users WHERE name = $1 and email = $2');
+				$result = pg_execute($dbconn, "get_id", array($name, $email));
+				$user = pg_fetch_array($result);
+
+				return $user['id'];
+
 			} else {
 				echo("Could not execute query");
 				return false;
@@ -45,7 +47,6 @@ function user_register($name, $password, $email) {
 	}
 
 }
-
 
 
 function user_authenticate($id, $pwd) {
@@ -75,7 +76,7 @@ function user_authenticate($id, $pwd) {
 function retrieve_user_info($id) {
 	$dbconn = db_connect();
 	$result = pg_prepare($dbconn, "my_query", 'SELECT * FROM users WHERE id = $1');
-	$result = pg_execute($dbconn, "my_query", array("$id"));
+	$result = pg_execute($dbconn, "my_query", array($id));
 
 	if(!$result) {
 		echo("Cannot retrieve");
