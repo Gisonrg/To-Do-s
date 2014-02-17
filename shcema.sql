@@ -1,6 +1,6 @@
 -- SCHEMA --
 
--- Dropping and creating a table (note PRIMARY KEY)
+-- Dropping and creating a table for users(note PRIMARY KEY)
 DROP TABLE users;
 CREATE TABLE users (
 	id serial PRIMARY KEY NOT NULL,
@@ -9,4 +9,15 @@ CREATE TABLE users (
 	level integer,
 	exp integer,
 	email VARCHAR(30)
+);
+
+-- Dropping and creating a table for task
+DROP TABLE task;
+CREATE TABLE tasks (
+	id serial PRIMARY KEY NOT NULL,
+	userid integer,
+	title VARCHAR(40),
+	description VARCHAR(400),
+	totalslot integer,
+	remainingslot integer
 );

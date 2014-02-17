@@ -72,8 +72,10 @@ function user_authenticate($name, $pwd) {
 
 function retrieve_user_info($id) {
 	$dbconn = db_connect();
+
 	$result = pg_prepare($dbconn, "", 'SELECT * FROM users WHERE id = $1');
 	$result = pg_execute($dbconn, "", array($id));
+
 
 	if(!$result) {
 		echo("Cannot retrieve");
@@ -81,6 +83,51 @@ function retrieve_user_info($id) {
 	} else {
 		return pg_fetch_array($result);
 	}
+}
+
+function retrieve_tasks_info($user_id) {
+	$dbconn = db_connect();
+	$result = pg_prepare($dbconn, "gettask", 'SELECT * FROM tasks WHERE userid = $1');
+	$result = pg_execute($dbconn, "gettask", array($user_id));
+
+
+	while ($row = pg_fetch_array($result)) {
+		$tasks[] = $row;
+	}
+	if (!isset($tasks)) {
+		return false;
+	} else {
+		return $tasks;
+	}
+}
+
+// varify_user_and_task($userid, $taskid)
+function varify_user_and_task($userid, $taskid) {
+	$dbconn = db_connect();
+	$result = pg_prepare($dbconn, "my_query", 'SELECT userID FROM tasks WHERE id = $1');
+	$result = pg_execute($dbconn, "my_query", array($taskid));
+
+	if(!$result) {
+		echo("No such a task");
+		exit;
+	} else {
+		$row = pg_fetch_array($result);
+		return $row['userID'] == $userid;
+	}
+}
+
+function add_task($userid, $title, $description, $slot) {
+	$dbconn = db_connect();
+			
+	$result = pg_prepare($dbconn, "create", 'insert into tasks values(nextval(\'users_id_seq\'), $1 , $2 , $3, $4, $4)');
+	$result = pg_execute($dbconn, "create", array($userid, $title, $description, $slot));
+			
+	if ($result) {
+		return true;
+	} else {
+		return false;
+	}
+
 }
 
 
