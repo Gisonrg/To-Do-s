@@ -13,7 +13,7 @@
 			</head>
 			<body>
         <?php show_nav($title);?>
-        <div class="container">
+        <div class="container container-pad">
           <h1>Test！</h1>
 
 

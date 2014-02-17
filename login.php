@@ -24,6 +24,7 @@ if (isset($_POST['submit']) && $_POST['submit'] =='login') {
 }
 
 showHeader("Login");
+echo "<div class=\"content\">";
 
 switch ($_SESSION['mode']) {
 	case 'login':
@@ -54,7 +55,7 @@ switch ($_SESSION['mode']) {
 }
 
 
-
+echo "</div>";
 
 
 

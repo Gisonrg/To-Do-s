@@ -33,6 +33,10 @@
 	if (isset($_SESSION['valid_user_id'])) {
     	showBar($_SESSION['valid_user_id']);
 	}
+	echo "<div class=\"content\">";
+
+
+
 	switch ($_SESSION['mode']) {
 		case 'view':
 			if (!isset($_SESSION['valid_user_id'])) {
@@ -70,7 +74,7 @@
 			}
 			break;
 	}
-	
+	echo "</div>";
 
 
 	showFooter();

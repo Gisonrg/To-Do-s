@@ -147,7 +147,7 @@ function add_task($userid, $title, $description, $slot) {
 
 function update_task($id, $title, $description, $totalslot, $remainingslot) {
 	$dbconn = db_connect();
-	$result = pg_prepare($dbconn, "update", 'update tasks set title=$1, description=$2, $totalslot=$3, $remainingslot=$4 where id=$5');
+	$result = pg_prepare($dbconn, "update", 'update tasks set title=$1, description=$2, totalslot=$3, remainingslot=$4 where id=$5');
 	$result = pg_execute($dbconn, "update", array($title, $description, $totalslot, $remainingslot, $id));
 			
 	if ($result) {

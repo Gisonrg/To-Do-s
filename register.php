@@ -24,6 +24,8 @@ if (isset($_POST['submit']) && $_POST['submit'] =='Submit') {
 
 showHeader("Register");
 
+echo "<div class=\"content\">";
+
 switch ($_SESSION['mode']) {
 	case 'register':
 		require("view/register.inc");
@@ -52,7 +54,7 @@ switch ($_SESSION['mode']) {
 		break;
 }
 
-
+echo "</div>";
 
 
 
