@@ -73,8 +73,8 @@ function user_authenticate($name, $pwd) {
 
 function retrieve_user_info($id) {
 	$dbconn = db_connect();
-	$result = pg_prepare($dbconn, "my_query", 'SELECT * FROM users WHERE id = $1');
-	$result = pg_execute($dbconn, "my_query", array($id));
+	$result = pg_prepare($dbconn, "retrieve", 'SELECT * FROM users WHERE id = $1');
+	$result = pg_execute($dbconn, "retrieve", array($id));
 
 	if(!$result) {
 		echo("Cannot retrieve");
@@ -86,14 +86,14 @@ function retrieve_user_info($id) {
 
 function retrieve_tasks_info($user_id) {
 	$dbconn = db_connect();
-	$result = pg_prepare($dbconn, "my_query", 'SELECT * FROM tasks WHERE userID = $1');
-	$result = pg_execute($dbconn, "my_query", array($user_id));
+	$result = pg_prepare($dbconn, "gettask", 'SELECT * FROM tasks WHERE userid = $1');
+	$result = pg_execute($dbconn, "gettask", array($user_id));
 
 
 	while ($row = pg_fetch_array($result)) {
 		$tasks[] = $row;
 	}
-	if (!isset($task)) {
+	if (!isset($tasks)) {
 		return false;
 	} else {
 		return $tasks;

@@ -15,9 +15,9 @@ CREATE TABLE users (
 DROP TABLE task;
 CREATE TABLE tasks (
 	id serial PRIMARY KEY NOT NULL,
-	userID integer,
+	userid integer,
 	title VARCHAR(40),
 	description VARCHAR(400),
-	totalSlot integer,
-	remainingSlot integer
+	totalslot integer,
+	remainingslot integer
 );

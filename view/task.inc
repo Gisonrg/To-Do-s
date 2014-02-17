@@ -27,7 +27,7 @@
 						echo "<tr>";
 						echo "<td>".$tasks[$i]['title']."</td>";
 						echo "<td>".$tasks[$i]['description']."</td>";
-						echo "<td>".($tasks[$i]['remainingSlot']/$tasks[$i]['totalSlot']*100)."%"."</td>";
+						echo "<td>".((1 - $tasks[$i]['remainingslot']/$tasks[$i]['totalslot']) * 100)."%"."</td>";
 						echo "<td>"."25"."</td>";
 						echo "</tr>";
 					}
@@ -51,7 +51,7 @@
 			<label for="name">Slot (30 min as a unit)</label>
 			<input type="number" name="duration" min="1" max="20" />
 			<br />
-			<input type="submit" name="submit" value="login">
+			<input type="submit" name="submit" value="create">
 		</form>
 		<?php
 	}
