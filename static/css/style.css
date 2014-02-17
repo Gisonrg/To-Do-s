@@ -15,10 +15,7 @@ body {
 
 .topheader {
 	height: 150px;
-    /*background-image: url('../img/header.jpg');
-    background-position:center center; 
-    background-repeat:no-repeat;
-    background-size: cover;*/
+
     background-color: #1bbef0;
 }
 
@@ -79,6 +76,49 @@ nav>ul>li>a.active {
 	float: left;
 	background-color: #f7f5fa;
 	margin-right: 5%;
+	box-shadow: 5px 5px 5px #888888;
+}
+
+.sidebar fieldset {
+	border: none;
+	margin-bottom: 5px;
+}
+
+
+
+.sidebar .login_form input[type="text"], .sidebar .login_form input[type="password"]{
+    border: 1px solid #DADADA;
+    color: black;
+    height: 30px;
+    margin-bottom: 15px;
+    margin-left: 5%;
+    margin-top: 2px;
+    outline: 0 none;
+    padding: 3px;
+    width: 90%;
+    font-family: Georgia;
+    font-size: 1em;
+}
+.sidebar .login_form input[type="submit"] {
+	font-size: 1em;
+	background: #E48F8F;
+    border: none;
+    padding: 10px 25px 10px 25px;
+    color: #FFF;
+    margin-left: 5%;
+    width: 90%;
+    font-family: Georgia;
+}
+
+#found-psw {
+	text-align: center;
+	font-size: 15px;
+}
+#found-psw>a:link {
+	text-decoration: none;
+}
+#found-psw>a:visited {
+	text-decoration: none;
 }
 
 b, u, i {
@@ -174,6 +214,207 @@ b, u, i {
 	padding-right: 0;
 	width: 75%;
 	float: left;
+}
+
+.full-page {
+	padding: 10px;
+	width: 100%;
+	float: left;
+}
+
+.full-page .login_form {
+	width: 60%;
+	padding: 10px;
+	margin: 10px auto;
+	background-color: #f7f5fa;
+	text-align: center;
+	box-shadow: 10px 10px 5px #888888;
+}
+.full-page .login_form > h2 {
+	margin: 20px;
+}
+.full-page .login_form label {
+	display: inline-block;
+	width: 20%;
+	text-align: right;
+}
+
+.full-page .login_form input[type="text"], .full-page .login_form input[type="password"]{
+    border: 1px solid #DADADA;
+    color: black;
+    height: 30px;
+    margin-bottom: 15px;
+    margin-left: 5%;
+    margin-top: 2px;
+    outline: 0 none;
+    padding: 3px;
+    max-width: 70%;
+    min-width: 40%;
+    font-family: Georgia;
+    font-size: 1em;
+}
+.full-page .login_form input[type="submit"] {
+	font-size: 1em;
+	background: #E48F8F;
+    border: none;
+    padding: 10px 25px 10px 25px;
+    color: #FFF;
+    margin-left: 5%;
+    max-width: 70%;
+    min-width: 40%;
+    font-family: Georgia;
+    margin-bottom: 5%; 
+}
+
+.full-page .register_form {
+	width: 60%;
+	margin: 10px auto;
+	padding: 10px;
+	background-color: #f7f5fa;
+	text-align: center;
+	box-shadow: 10px 10px 5px #888888;
+}
+
+.full-page .register_form > h2 {
+	margin: 20px;
+}
+
+.full-page .register_form input[type="text"], .full-page .register_form input[type="password"],
+.full-page .register_form input[type="email"] {
+    border: 1px solid #DADADA;
+    color: black;
+    height: 30px;
+    margin-bottom: 15px;
+    margin-left: 5%;
+    margin-top: 2px;
+    outline: 0 none;
+    padding: 3px;
+    max-width: 70%;
+    min-width: 40%;
+    font-family: Georgia;
+    font-size: 1em;
+}
+
+.full-page .register_form label {
+	display: inline-block;
+	width: 20%;
+	text-align: right;
+	
+}
+
+.full-page .register_form input[type="submit"] {
+	font-size: 1em;
+	background: #E48F8F;
+    border: none;
+    padding: 10px 25px 10px 25px;
+    color: #FFF;
+    margin-left: 5%;
+    max-width: 50%;
+    min-width: 30%;
+    font-family: Georgia;
+    margin-bottom: 5%; 
+}
+.full-page .register_form .button:hover {
+	background: #CF7A7A
+}
+
+.full-page .login_form .button:hover {
+	background: #CF7A7A
+}
+
+.full-page fieldset {
+	border: none;
+	margin-bottom: 5px;
+}
+
+#view_account {
+	width: 100%;
+	margin: auto;
+	padding: 10px;
+	background-color: #f7f5fa;
+	text-align: center;
+	box-shadow: 10px 10px 5px #888888;
+}
+#view_account input[type="text"], #view_account input[type="password"],
+#view_account input[type="email"] {
+    border: 1px solid #DADADA;
+    color: black;
+    height: 30px;
+    margin-bottom: 15px;
+    margin-left: 5%;
+    margin-top: 2px;
+    outline: 0 none;
+    padding: 3px;
+    max-width: 70%;
+    min-width: 40%;
+    font-family: Georgia;
+    font-size: 1em;
+}
+#view_account input[type="text"]:disabled {
+	background-color: #cfcfcf;
+}
+#view_account label {
+	display: inline-block;
+	width: 20%;
+	text-align: right;
+	
+}
+
+#view_account input[type="submit"] {
+	font-size: 1em;
+	background: #E48F8F;
+    border: none;
+    padding: 10px 25px 10px 25px;
+    color: #FFF;
+    margin-left: 5%;
+    max-width: 50%;
+    min-width: 30%;
+    font-family: Georgia;
+    margin-bottom: 5%; 
+}
+#view_account > h2 {
+	margin: 20px;
+}
+#view_account .button:hover {
+	background: #CF7A7A;
+}
+#change_password {
+	border-style: dashed;
+	border-width: 2px;
+	border-color: #bac2c4;
+}
+#change_password >p {
+	color: red;
+	margin-bottom: 5px;
+}
+#change_password >p >strong {
+	color: black;
+
+}
+
+.view-task ,.task-update ,.task-create{
+	width: 100%;
+	margin: auto;
+	padding: 10px;
+	background-color: #f7f5fa;
+	box-shadow: 10px 10px 5px #888888;
+}
+
+.view-task th, .view-task td   {
+	text-align: center;
+}
+#task-option {
+	margin-bottom: 3%;
+}
+#task-option .button {
+	background: #E48F8F;
+    border: none;
+    padding: 10px 25px 10px 25px;
+    color: #FFF;
+    font-size: 1em;
+}
+#task-option .button:hover {
+	background: #CF7A7A;
 }
 
 .footer {

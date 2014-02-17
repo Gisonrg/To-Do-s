@@ -25,7 +25,7 @@ if (isset($_POST['submit']) && $_POST['submit'] =='login') {
 }
 
 showHeader("Login");
-echo "<div class=\"content\">";
+echo "<div class=\"full-page\">";
 
 switch ($_SESSION['mode']) {
 	case 'login':
@@ -36,28 +36,29 @@ switch ($_SESSION['mode']) {
 			$register_result = user_authenticate($_POST['name'], sha1($_POST['password']));
 			if ($register_result >= 0) {
 				$_SESSION['valid_user_id'] = $register_result;
-				$msg = "Login successfully! \nYou have now logged in as <strong>".$_POST['name']."</strong>.\n";
+				$msg = "Login successfully!<br/>You have now logged in as <strong>".$_POST['name']."</strong>.<br/>";
 				$msg = $msg."You are now being redirect to the homepage...";
 				display_success($msg);
 				header("Refresh: 3; url=index.php");
 			} else {
 				// echo $register_result;
-				echo "Error: Login unsuccessfully! Please try again";
+				$msg = "Login unsuccessfully! Please try again";
+				display_error($msg);
 				$_SESSION['mode'] = 'login';
 				require('view/login.inc');
 			}
 		}
 		break;
 	case 'access_denied':
-		echo "You have already logged in!";
+		header("url=index.php");
 		break;
 	default:
 		# code...
 		break;
 }
 
-
 echo "</div>";
+
 
 
 

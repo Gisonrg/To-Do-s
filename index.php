@@ -10,13 +10,17 @@ require_once("view/task.inc");
 
 
 showHeader("Home Page");
+
+
 if (isset($_SESSION['valid_user_id'])) {
     showBar($_SESSION['valid_user_id']);
+} else {
+	showLoginBar();
 }
 echo "<div class=\"content\">";
 
 if (isset($_SESSION['valid_user_id'])) {
-	
+
     show_existing_task($_SESSION['valid_user_id']);
 
 }

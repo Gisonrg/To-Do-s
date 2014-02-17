@@ -20,7 +20,7 @@
 		$_SESSION['mode'] = 'access_denied';
 	}
 
-	echo "<div class=\"content\">";
+	echo "<div class=\"full-page\">";
 
 	switch ($_SESSION['mode']) {
 		case 'logout':
@@ -39,5 +39,6 @@
 
 	echo "</div>";
 
+showFooter();
 
 ?>

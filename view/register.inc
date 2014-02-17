@@ -1,7 +1,7 @@
 <div class="register_form">
+  <h2>New User Register</h2>   
   <form method="post" action="register.php">
-    <h2>New User Register</h2>
-
+    <fieldset>
     <label for="name">User Name</label>
     <input type="text" id="name" name="name" placeholder="User Name" required="" autofocus="">
     <br/>  
@@ -11,7 +11,7 @@
     <label for="password">Password</label>
     <input type="password" id="password" name="password" placeholder="Password" required="">
     <br/>
-    
+    </fieldset>
 
 
     <input type="submit" name="submit" value="Submit">
