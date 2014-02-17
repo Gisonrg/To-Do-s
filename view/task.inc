@@ -27,7 +27,7 @@
 						echo "<tr>";
 						echo "<td><a href=task.php?task_id=".$tasks[$i]['id'].">".$tasks[$i]['title']."</a></td>";
 						echo "<td>".$tasks[$i]['description']."</td>";
-						echo "<td>".((1 - $tasks[$i]['remainingslot']/$tasks[$i]['totalslot']) * 100)."%"."</td>";
+						echo "<td><progress max=\"100\" value=\"".((1 - $tasks[$i]['remainingslot']/$tasks[$i]['totalslot']) * 100)."\"</td>";
 						echo "<td>"."25"."</td>";
 						echo "</tr>";
 					}
