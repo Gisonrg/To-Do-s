@@ -34,7 +34,9 @@ switch ($_SESSION['mode']) {
 			$register_result = user_authenticate($_POST['name'], sha1($_POST['password']));
 			if ($register_result >= 0) {
 				$_SESSION['valid_user_id'] = $register_result;
-				echo "Login successfully! You have now logged in as ".$_POST['name'];
+				echo "Login successfully! \nYou have now logged in as ".$_POST['name'];
+				echo "\nYou are now being redirect to the homepage...";
+				header("Refresh: 3; url=index.php");
 			} else {
 				// echo $register_result;
 				echo "Error: Login unsuccessfully! Please try again";

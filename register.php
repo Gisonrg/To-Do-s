@@ -34,6 +34,8 @@ switch ($_SESSION['mode']) {
 			if ($register_result) {
 				$_SESSION['valid_user_id'] = $register_result;
 				echo "Register successfully! You have now logged in as ".$_POST['name'];
+				echo "\nYou are now being redirect to the homepage...";
+				header("Refresh: 3; url=index.php");
 			} else {
 				echo "Error: Register unsuccessfully! Please try again";
 				$_SESSION['mode'] = 'register';

@@ -14,7 +14,7 @@ if (isset($_SESSION['valid_user_id'])) {
 }
 echo "<div class=\"content\">";
 
-
+	
 	echo "hahahahaa";
 
 echo "</div>";
