@@ -33,12 +33,12 @@
 			echo '<a href="index.php">Home</a>';
       	}
         if (isset($_SESSION['valid_user_id'])){
-            if ($title == 'Account') {
+            if ($title == 'Manage My Account') {
             echo '<a class="active" href="account.php">Account</a>';
           } else {
         echo '<a href="account.php">Account</a>';
           }
-          if ($title == 'Task') {
+          if ($title == 'Tasks') {
             echo '<a class="active" href="task.php">Task</a>';
           } else {
         echo '<a href="task.php">Task</a>';
