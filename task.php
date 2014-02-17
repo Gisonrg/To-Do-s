@@ -21,11 +21,11 @@
 		$_SESSION['mode'] = 'edit';
 	}
 	// inserting mode
-	if (isset($_POST['submit']) && $_POST['submit'] =='create') {
+	if (isset($_POST['submit']) && $_POST['submit'] =='Create') {
 		$_SESSION['mode'] = 'insert';
 	}
 	// updating mode
-	if (isset($_POST['submit']) && $_POST['submit'] =='update') {
+	if (isset($_POST['submit']) && $_POST['submit'] =='Update') {
 		$_SESSION['mode'] = 'update';
 	}
 
@@ -43,10 +43,13 @@
 				echo "you didn't login";
 				header("Refresh: 3; url=login.php");
 			} else {
+			?>
+			<form id="task-option" >
+				<input type="hidden" name="mode" value="create">
+				<input type="submit" class="button" value="Creating new task">
+			</form>
+			<?php
 				show_existing_task($_SESSION['valid_user_id']);
-				?>
-				<a href = "task.php?mode=create">Creating new task</a>
-				<?php
 			}
 
 			break;
