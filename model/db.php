@@ -101,6 +101,21 @@ function retrieve_tasks_info($user_id) {
 	}
 }
 
+function retrieve_task_info($task_id) {
+	$dbconn = db_connect();
+
+	$result = pg_prepare($dbconn, "", 'SELECT * FROM tasks WHERE id = $1');
+	$result = pg_execute($dbconn, "", array($task_id));
+
+
+	if(!$result) {
+		echo("Cannot retrieve");
+		exit;
+	} else {
+		return pg_fetch_array($result);
+	}
+}
+
 // varify_user_and_task($userid, $taskid)
 function varify_user_and_task($userid, $taskid) {
 	$dbconn = db_connect();
@@ -112,7 +127,7 @@ function varify_user_and_task($userid, $taskid) {
 		exit;
 	} else {
 		$row = pg_fetch_array($result);
-		return $row['userID'] == $userid;
+		return $row['userid'] == $userid;
 	}
 }
 
@@ -121,6 +136,19 @@ function add_task($userid, $title, $description, $slot) {
 			
 	$result = pg_prepare($dbconn, "create", 'insert into tasks values(nextval(\'users_id_seq\'), $1 , $2 , $3, $4, $4)');
 	$result = pg_execute($dbconn, "create", array($userid, $title, $description, $slot));
+			
+	if ($result) {
+		return true;
+	} else {
+		return false;
+	}
+
+}
+
+function update_task($id, $title, $description, $totalslot, $remainingslot) {
+	$dbconn = db_connect();
+	$result = pg_prepare($dbconn, "update", 'update tasks set title=$1, description=$2, $totalslot=$3, $remainingslot=$4 where id=$5');
+	$result = pg_execute($dbconn, "update", array($title, $description, $totalslot, $remainingslot, $id));
 			
 	if ($result) {
 		return true;

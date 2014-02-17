@@ -17,12 +17,16 @@
 		$_SESSION['mode'] = 'create';
 	}
 	// creating mode
-	if ((isset($_REQUEST['task_id'])) && (varify_user_and_task($userid, $taskid))) {
+	if ((isset($_REQUEST['task_id'])) && (varify_user_and_task($_SESSION['valid_user_id'], $_REQUEST['task_id']))) {
 		$_SESSION['mode'] = 'edit';
 	}
 	// inserting mode
 	if (isset($_POST['submit']) && $_POST['submit'] =='create') {
 		$_SESSION['mode'] = 'insert';
+	}
+	// updating mode
+	if (isset($_POST['submit']) && $_POST['submit'] =='update') {
+		$_SESSION['mode'] = 'update';
 	}
 
 	showHeader("Tasks");
@@ -53,6 +57,16 @@
 			}
 			break;
 		case 'edit':
+			show_updating_form($_REQUEST['task_id']);
+			break;
+		case 'update':
+			$row = retrieve_task_info($_REQUEST['task_id']);
+			if (update_task($_REQUEST['task_id'], $_REQUEST['title'], $_REQUEST['description'], $_REQUEST['duration'], $row['remainingslot'] + $_REQUEST['duration'] - $row['totalslot'])){
+				echo "success!";
+			} else {
+				echo "failed.";
+			}
+			break;
 	}
 	
 
