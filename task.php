@@ -17,7 +17,7 @@
 		$_SESSION['mode'] = 'create';
 	}
 	// creating mode
-	if ((isset($_REQUEST['task_id'])) && (varify_user_and_task($userid, $taskid)) {
+	if ((isset($_REQUEST['task_id'])) && (varify_user_and_task($userid, $taskid))) {
 		$_SESSION['mode'] = 'edit';
 	}
 	// inserting mode
@@ -45,10 +45,10 @@
 			break;
 		case 'insert':
 			if (add_task($_SESSION['valid_user_id'], $_REQUEST['title'], $_REQUEST['description'], $_REQUEST['duration'])) {
-				echo "Create successfully!"
+				echo "Create successfully!";
 				header("Refresh: 3; url=task.php");
 			} else {
-				echo "Failed"
+				echo "Failed";
 				header("Refresh: 3; url=task.php");
 			}
 			break;
