@@ -20,4 +20,4 @@ CREATE TABLE tasks (
 	description VARCHAR(400),
 	totalSlot integer,
 	remainingSlot integer
-)
+);

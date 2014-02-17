@@ -84,5 +84,21 @@ function retrieve_user_info($id) {
 	}
 }
 
+function retrieve_tasks_info($user_id) {
+	$dbconn = db_connect();
+	$result = pg_prepare($dbconn, "my_query", 'SELECT * FROM tasks WHERE userID = $1');
+	$result = pg_execute($dbconn, "my_query", array($user_id));
+
+
+	while ($row = pg_fetch_array($result)) {
+		$tasks[] = $row;
+	}
+	if (!isset($task)) {
+		return false;
+	} else {
+		return $tasks;
+	}
+}
+
 
 ?>
