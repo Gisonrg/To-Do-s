@@ -7,14 +7,14 @@
 		?>
 		<div class="sidebar">
 			<ul id="user-info"><p>Welcome!</p>
-				<li><p id="name"><?php echo($row['name']) ?></p></li>
-				<li><p id="level">Level <?php echo($row['level']) ?></p></li>
-				<li><p id="exp">Exp: <?php echo($row['exp'].'/'.$row['level']*20) ?></p></li>
+				<li><p id="side_name"><?php echo($row['name']) ?></p></li>
+				<li><p id="side_level">Level <?php echo($row['level']) ?></p></li>
+				<li><p id="side_exp">Exp: <?php echo($row['exp'].'/'.$row['level']*20) ?></p></li>
 			</ul>
 			<ul id="user-service"><p>Service</p>
 				<li><a href="account.php">Manage My Account</a></li>
-				<li><a href="tasks.php">Manage My Tasks</a></li>
-				<li><a href="tasks.php">Log out</a></li>
+				<li><a href="task.php">Manage My Tasks</a></li>
+				<li><a href="logout.php">Log out</a></li>
 			</ul>
 		</div>
 		<?php

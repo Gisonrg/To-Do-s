@@ -5,6 +5,7 @@ session_start();
 
 require_once("model/db.php");
 require_once("controller/userController.php");
+require_once("controller/messageController.php");
 require("view/header.inc");
 require("view/footer.inc");
 
@@ -32,14 +33,20 @@ switch ($_SESSION['mode']) {
 		break;
 	case 'register_result':
 		if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password'])) {
-			$register_result = user_register($_POST['name'],sha1($_POST['password']),$_POST['email']);
-			if ($register_result) {
+			$register_result = user_register(trim($_POST['name']),sha1($_POST['password']),trim($_POST['email']));
+			if ($register_result>=0) {
 				$_SESSION['valid_user_id'] = $register_result;
-				echo "Register successfully! You have now logged in as ".$_POST['name'];
-				echo "\nYou are now being redirect to the homepage...";
+				$msg = "Login successfully! \nYou have now logged in as <strong>".$_POST['name']."</strong>.\n";
+				$msg = $msg."You are now being redirect to the homepage...";
+				display_success($msg);
 				header("Refresh: 3; url=index.php");
 			} else {
-				echo "Error: Register unsuccessfully! Please try again";
+				if ($register_result==-1) {
+					$msg = "Register unsuccessfully! Please try again :(";
+				} else {
+					$msg = "Register unsuccessfully!\nYour username or email has already been registered!\nPlease try again :(";
+				}
+				display_error($msg);
 				$_SESSION['mode'] = 'register';
 				require("view/register.inc");
 			}

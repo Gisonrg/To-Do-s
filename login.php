@@ -5,6 +5,7 @@ session_start();
 
 require_once("model/db.php");
 require_once("controller/userController.php");
+require_once("controller/messageController.php");
 require("view/header.inc");
 require("view/footer.inc");
 
@@ -35,8 +36,9 @@ switch ($_SESSION['mode']) {
 			$register_result = user_authenticate($_POST['name'], sha1($_POST['password']));
 			if ($register_result >= 0) {
 				$_SESSION['valid_user_id'] = $register_result;
-				echo "Login successfully! \nYou have now logged in as ".$_POST['name'];
-				echo "\nYou are now being redirect to the homepage...";
+				$msg = "Login successfully! \nYou have now logged in as <strong>".$_POST['name']."</strong>.\n";
+				$msg = $msg."You are now being redirect to the homepage...";
+				display_success($msg);
 				header("Refresh: 3; url=index.php");
 			} else {
 				// echo $register_result;

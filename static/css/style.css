@@ -93,7 +93,7 @@ nav>ul>li>a.active {
 	text-align: center;
 }
 
-#name {
+#side_name {
 	font-size: 30px;
 }
 
@@ -149,7 +149,7 @@ nav>ul>li>a.active {
 	background-color: #211a2c;
 	position:absolute;
 	height: 80px;
-	margin-top: 50px;
+	margin-top: 75px;
 	padding-top: 20px;
 	width: 100%;
 	clear: both;

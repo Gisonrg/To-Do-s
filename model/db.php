@@ -15,34 +15,28 @@ function db_connect() {
 
 function user_register($name, $password, $email) {
 	$dbconn = db_connect();
-	$result = pg_prepare($dbconn, "my_query", 'SELECT * FROM users WHERE name = $1 and email = $2');
-	// $result=pg_query($dbconn, "select * from users;");
-
+	$result = pg_prepare($dbconn, "my_query", 'SELECT * FROM users WHERE name = $1 or email = $2');
 	// check if the name or email has been registered
 	$result = pg_execute($dbconn, "my_query", array($name, $email));
 
 	if($result) {
-		if (pg_affected_rows($result) ==0) {
+		if (pg_num_rows($result) ==0) {
 			$result = pg_prepare($dbconn, "register", 'insert into users values(nextval(\'users_id_seq\'), $1 , $2 ,1,0, $3 )');
 			$result = pg_execute($dbconn, "register", array($name, $password,$email));
 			if($result){
 				$result = pg_prepare($dbconn, "get_id", 'SELECT * FROM users WHERE name = $1 and email = $2');
 				$result = pg_execute($dbconn, "get_id", array($name, $email));
 				$user = pg_fetch_array($result);
-
 				return $user['id'];
 
 			} else {
-				echo("Could not execute query");
-				return false;
+				return -1;
 			}
 		} else {
-			echo "Your username or email has already been registered!";
-			return false;
+			return -2;
 		}
 	} else {
-		echo("Could not execute query");
-		return false;
+		return -1;
 	}
 
 }

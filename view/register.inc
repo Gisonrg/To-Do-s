@@ -1,7 +1,7 @@
 <div class="register_form">
   <form method="post" action="register.php">
     <h2>New User Register</h2>
-   
+
     <label for="name">User Name</label>
     <input type="text" id="name" name="name" placeholder="User Name" required="" autofocus="">
     <br/>  
