@@ -7,41 +7,62 @@
 }
 
 body {
-	margin: 0 auto;
-	max-width: 1140px;
-	min-width: 960px;
+/*	max-width: 1140px;
+*/	min-width: 960px;
+	background-color: #ffffff;
+	font-family: Helvetica, sans-serif;
+}
+
+.topheader {
+	height: 150px;
+    /*background-image: url('../img/header.jpg');
+    background-position:center center; 
+    background-repeat:no-repeat;
+    background-size: cover;*/
+    background-color: #1bbef0;
 }
 
 nav {
+
+	float: right; 
 	width: 100%;
-	border: black solid;
 }
 
-nav>a {
+nav>ul {
+	list-style: none;
+	float: right;
+}
+nav>ul>li {
+	
+	float: left;
 	margin-right: 10px;
 }
 
-nav>a:link {
+nav>ul>li>a:link {
 	color:black;
+	text-decoration: none;
 }
 
 
-nav>a:visited {
+nav>ul>li>a:visited {
 	color:black;
+	text-decoration: none;
 }
 
-nav>a:hover {
+nav>ul>li>a:hover {
 	color:red;
 }
 
-nav>a.active {
-	background-color: yellow;
-	color:red;
+nav>ul>li>a.active {
+	color:white;
 }
 
 .container {
+	margin: 0 auto;
+	max-width: 1140px;
 	width: 100%;
-	border: solid #52ce64;
+	padding-bottom: 200px;
+	
 }
 .container:after {
   content: "";
@@ -54,21 +75,82 @@ nav>a.active {
 }
 
 .sidebar {
-	padding-right: 20px;
-	border: solid 1px red;
-	 width: 25%;
+	 width: 20%;
 	float: left;
+	background-color: #f7f5fa;
+	margin-right: 5%;
+}
+
+#user-info {
+	margin-bottom: 10px;
+}
+
+#user-info>li {
+	list-style: none;
+	color: #716b7a;
+}
+#user-info>li>p {
+	text-align: center;
+}
+
+#name {
+	font-size: 30px;
+}
+
+#user-info > p{
+	text-align: center;
+	line-height: 50px;
+	background: #3498DB;
+	color: white;
+	font-size: 20px;
+}
+
+
+#user-service >p{
+	line-height: 50px;
+	text-align: center;
+	background: #3498DB;
+	color: white;
+	font-size: 20px;
+
+}
+#user-service >li {
+	display: block;
+	list-style: none;
+	border-bottom: 1px solid #d0d0d0;
+    padding: .75em 0;
+    line-height: 15px; 
+}
+#user-service >li>a:link {
+	text-decoration: none;
+	color: #716b7a;
+}
+#user-service >li>a:visited {
+	text-decoration: none;
+	color: #716b7a;
+}
+
+#user-service >li>a:hover {
+	color: black;
+}
+
+#user-service >li:hover {
+	background-color: white;
 }
 
 .content {
-	 padding-right: 0;
+	padding-right: 0;
 	width: 75%;
-	border: solid blue; 
 	float: left;
 }
 
 .footer {
-	position: fixed;
-	bottom: 0;
-	border: solid yellow;
+	color: white;
+	background-color: #211a2c;
+	position:absolute;
+	height: 80px;
+	margin-top: 50px;
+	padding-top: 20px;
+	width: 100%;
+	clear: both;
 }

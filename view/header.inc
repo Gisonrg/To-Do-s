@@ -12,9 +12,12 @@
 				<link rel="stylesheet" type="text/css" href="static/css/style.css">
 			</head>
 			<body>
+
+      <div class="topheader">
         <?php show_nav($title);?>
+      </div>
+
         <div class="container container-pad">
-          <h1>Test！</h1>
 
 
 
@@ -28,43 +31,43 @@
 	function show_nav($title) {
 		echo "<nav>";
       	if ($title == 'Home Page') {
-      		echo '<a class="active" href="index.php">Home</a>';
+      		echo '<ul><li><a class="active" href="index.php">Home</a></li>';
       	} else {
-			echo '<a href="index.php">Home</a>';
+			echo '<ul><li><a href="index.php">Home</a></li>';
       	}
         if (isset($_SESSION['valid_user_id'])){
             if ($title == 'Manage My Account') {
-            echo '<a class="active" href="account.php">Account</a>';
+            echo '<li><a class="active" href="account.php">Account</a></li>';
           } else {
-        echo '<a href="account.php">Account</a>';
+        echo '<li><a href="account.php">Account</a></li>';
           }
           if ($title == 'Tasks') {
-            echo '<a class="active" href="task.php">Task</a>';
+            echo '<li><a class="active" href="task.php">Task</a></li>';
           } else {
-        echo '<a href="task.php">Task</a>';
+        echo '<li><a href="task.php">Task</a>';
           }
           if ($title == 'Logout') {
-              echo '<a class="active" href="logout.php">Logout</a>';
+              echo '<ul><li><a class="active" href="logout.php">Logout</a></li>';
             } else {
-        echo '<a href="logout.php">Logout</a>';
+        echo '<li><a href="logout.php">Logout</a></li>';
             }
         } else {
           if ($title == 'Login') {
-              echo '<a class="active" href="login.php">Login</a>';
+              echo '<ul><li><a class="active" href="login.php">Login</a></li>';
             } else {
-        echo '<a href="login.php">Login</a>';
+        echo '<li><a href="login.php">Login</a></li>';
             }
 
             if ($title == 'Register') {
-              echo '<a class="active" href="register.php">Sign Up</a>';
+              echo '<ul><li><a class="active" href="register.php">Sign Up</a></li>';
             } else {
-        echo '<a href="register.php">Sign Up</a>';
+        echo '<li><a href="register.php">Sign Up</a></li>';
             }
         }
 		    if ($title == 'Contact') {
-      		echo '<a class="active" href="contact.php">Contact</a>';
+      		echo '<li><a class="active" href="contact.php">Contact</a></li></ul>';
       	} else {
-			echo '<a href="contact.php">Contact</a>';
+			echo '<li><a href="contact.php">Contact</a></ul>';
       	}	       
       	
 
