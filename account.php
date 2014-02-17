@@ -6,6 +6,7 @@ session_start();
 require_once("model/db.php");
 require_once("model/user.php");
 require_once("controller/userController.php");
+require_once("controller/messageController.php");
 require("view/header.inc");
 require("view/footer.inc");
 
@@ -36,34 +37,40 @@ switch ($_SESSION['mode']) {
 		break;
 
 	case 'update_result':
-	echo $_POST['name'];
 		if (isset($_POST['o_password']) && isset($_POST['n_password']) && trim($_POST['o_password'])!='' &&trim($_POST['o_password'])!='') {
 			if (user_authenticate($_POST['name'], sha1($_POST['o_password']))>=0) {
 				if (update_user($_POST['name'], $_POST['email'],$_SESSION['valid_user_id'], sha1($_POST['n_password']))) {
-					echo "Update successfully!";
+					$msg= "Update successfully!";
+					display_success($msg);
+					header("Refresh: 3; url=index.php");
 				} else {
-					echo "Error: Update unsuccessfully! Please try again1";
+					$msg= "Update unsuccessfully! Please try again";
+					display_error($msg);
 					$_SESSION['mode'] = 'show';
 					display_user_information($_SESSION['valid_user_id']);
 				}
 			} else {
-				// echo $register_result;
-				echo "<p id=\"warning\">Error: Wrong old password! Please try again2</p>";
+				$msg = "Wrong old password! Please try again";
+				display_error($msg);
 				$_SESSION['mode'] = 'show';
 				display_user_information($_SESSION['valid_user_id']);
 			}
 		} else {
 			if (update_user($_POST['name'], $_POST['email'],$_SESSION['valid_user_id'])) {
-				echo "Update successfully!";
+				$msg= "Update successfully!";
+				display_success($msg);
+				header("Refresh: 3; url=index.php");
 			} else {
-				echo "Error: Update unsuccessfully! Please try again3";
+				$msg = "Update unsuccessfully! Please try again";
+				display_error($msg);
 				$_SESSION['mode'] = 'show';
 				display_user_information($_SESSION['valid_user_id']);
 			}
 		}
 		break;
 	case 'access_denied':
-		echo "Please login to see the page!";
+		$msg= "Please login to see the page!";
+		display_error($msg);
 		header("Refresh: 3; url=login.php");
 		break;
 	default:

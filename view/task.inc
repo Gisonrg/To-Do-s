@@ -40,6 +40,7 @@
 	// show_creating_form()
 	function show_creating_form() {
 		?>
+		<div class="task-create">
 		<form  method="post" action="" role="form">
 			<h2>Creating new task</h2>
 			<label for="name">Title</label>
@@ -53,6 +54,7 @@
 			<br />
 			<input type="submit" name="submit" value="create">
 		</form>
+		</div>
 		<?php
 	}
 
@@ -60,6 +62,7 @@
 	function show_updating_form($taskid) {
 		$row = retrieve_task_info($taskid);
 		?>
+		<div class="task-update">
 		<form  method="post" action="" role="form">
 			<h2>Updating task</h2>
 			<label for="name">Title</label>
@@ -73,6 +76,8 @@
 			<br />
 			<input type="submit" name="submit" value="update">
 		</form>
+		<div class="task-update">
+
 		<?php
 	}
 ?>

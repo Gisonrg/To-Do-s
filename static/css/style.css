@@ -81,6 +81,38 @@ nav>ul>li>a.active {
 	margin-right: 5%;
 }
 
+b, u, i {
+	display: block;
+	height: 1px;
+	overflow: hidden;
+}
+
+
+.msg-success {
+	width: 40%;
+	margin: 0 auto;
+	padding: 20px;
+	text-align: center;
+	background-color: rgba(86, 213, 60, 0.29);
+	border:3px solid #5ae13e;
+	border-radius:25px;
+	-moz-border-radius:25px; 
+
+}
+
+.msg-error {
+	width: 40%;
+	margin: 0 auto;
+	padding: 20px;
+	text-align: center;
+	background-color: rgba(236, 133, 140, 0.72);
+	border:3px solid #ba646c;
+	border-radius:25px;
+	-moz-border-radius:25px;
+}
+
+
+
 #user-info {
 	margin-bottom: 10px;
 }
