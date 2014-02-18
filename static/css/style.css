@@ -149,7 +149,9 @@ b, u, i {
 	border-radius:25px;
 	-moz-border-radius:25px;
 }
-
+.msg-error > img {
+	vertical-align:middle;
+}
 
 
 #user-info {

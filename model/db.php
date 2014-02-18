@@ -23,6 +23,7 @@ function user_register($name, $password, $email) {
 		if (pg_num_rows($result) ==0) {
 			$result = pg_prepare($dbconn, "register", 'insert into users values(nextval(\'users_id_seq\'), $1 , $2 ,1,0, $3 )');
 			$result = pg_execute($dbconn, "register", array($name, $password,$email));
+			
 			if($result){
 				$result = pg_prepare($dbconn, "get_id", 'SELECT * FROM users WHERE name = $1 and email = $2');
 				$result = pg_execute($dbconn, "get_id", array($name, $email));
