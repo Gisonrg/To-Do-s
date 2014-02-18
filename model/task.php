@@ -2,8 +2,8 @@
 
 function retrieve_tasks_info($user_id) {
 	$dbconn = db_connect();
-	$result = pg_prepare($dbconn, "gettask", 'SELECT * FROM tasks WHERE userid = $1');
-	$result = pg_execute($dbconn, "gettask", array($user_id));
+	$result = pg_prepare($dbconn, "", 'SELECT * FROM tasks WHERE userid = $1');
+	$result = pg_execute($dbconn, "", array($user_id));
 
 
 	while ($row = pg_fetch_array($result)) {
@@ -18,8 +18,8 @@ function retrieve_tasks_info($user_id) {
 
 function retrieve_ongoing_tasks_info($user_id) {
 	$dbconn = db_connect();
-	$result = pg_prepare($dbconn, "gettask", 'SELECT * FROM tasks WHERE userid = $1 and remainingslot > 0');
-	$result = pg_execute($dbconn, "gettask", array($user_id));
+	$result = pg_prepare($dbconn, "", 'SELECT * FROM tasks WHERE userid = $1 and remainingslot > 0');
+	$result = pg_execute($dbconn, "", array($user_id));
 
 
 	while ($row = pg_fetch_array($result)) {

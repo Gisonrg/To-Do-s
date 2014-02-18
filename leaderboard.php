@@ -5,15 +5,22 @@
 	session_start();
 
 	require_once("model/db.php");
-	require_once("controller/userController.php");
-	require("view/task.inc");
-	require("view/header.inc");
-	require("view/footer.inc");
+	require_once("model/user.php");
+	require_once("model/task.php");
+	require_once("model/event.php");
 
-	showHeader("Tasks");
+	//set highlight item in the navigation bar
+	$_SESSION['active']='Leaderboard';
+
+	//load user information
+	$row = retrieve_user_info($_SESSION['valid_user_id']);
+	$tasks = retrieve_ongoing_tasks_info($_SESSION['valid_user_id']);
+
 	if (isset($_SESSION['valid_user_id'])) {
-    	showBar($_SESSION['valid_user_id']);
+		$leaders = retrieve_leader_info();
+		require('view/leaderboard.view.php');
+	} else {
+		header("Refresh: 0; url=index.php");
 	}
-	require("view/leaderboard.inc");
-	showFooter();
 ?>
+
