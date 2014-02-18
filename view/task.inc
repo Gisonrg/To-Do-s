@@ -36,10 +36,11 @@
 							echo "<input type=\"hidden\" name=\"taskid\" value=\"".$tasks[$i]['id']."\">";
 							echo "<input type=\"submit\" name=\"submit\" value=\"do\">";
 							echo "</form></td>";
+							echo "<td>Ongoing</td>";
 						} else {
 							echo "<td></td>";
+							echo "<td>Completed</td>";
 						}
-						echo "<td>Ongoing</td>";
 						echo "</tr>";
 
 					}
@@ -84,11 +85,6 @@
 		} else {
 			?>
 			<table class="view-task">
-				<tr>
-					<th>Title</th>
-					<th>Progress</th>
-					<th>Option</th>
-				</tr>
 				<?php
 					for ($i = 0; $i < count($tasks); $i++) {
 						echo "<tr>";
