@@ -50,6 +50,10 @@
 				echo "you didn't login";
 				header("Refresh: 3; url=login.php");
 			} else {
+				if (isset($_REQUEST['submit']) && ($_REQUEST['submit'] == "do")) {
+					$row = retrieve_task_info($_REQUEST['taskid']);
+					do_task($_REQUEST['taskid'], $row['remainingslot'] - 1);
+				}
 			?>
 			<form id="task-option" >
 				<input type="hidden" name="mode" value="create">
@@ -79,15 +83,6 @@
 			$row = retrieve_task_info($_REQUEST['task_id']);
 			if (update_task($_REQUEST['task_id'], $_REQUEST['title'], $_REQUEST['description'], $_REQUEST['duration'], $row['remainingslot'] + $_REQUEST['duration'] - $row['totalslot'])){
 				echo "success!";
-			} else {
-				echo "failed.";
-			}
-			break;
-		case 'do':
-			$row = retrieve_task_info($_REQUEST['task_id']);
-			if (do_task($_REQUEST['task_id'], $row['remainingslot'])) {
-				add_exp($_SESSION['valid_user_id'], 25 / $row['totalslot']);//magic number here
-				header("Refresh: 0; url=index.php");
 			} else {
 				echo "failed.";
 			}
