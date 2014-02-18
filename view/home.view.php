@@ -5,6 +5,7 @@
 		<?php include('common/top.inc');?>
 		
 		<div class="container container-pad">	
+		
 			<?php include('common/sidebar.inc');?>
 
 		<div class="content">

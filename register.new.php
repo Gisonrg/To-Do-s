@@ -14,7 +14,7 @@ $email ="";
 $msg="";
 
 if (isset($_SESSION['valid_user_id'])) {
-	header("Refresh: 0; url=index(new).php");
+	header("Refresh: 0; url=index.new.php");
 	exit;
 	
 } else if (isset($_POST['submit']) && $_POST['submit'] =='Sign Up') {
