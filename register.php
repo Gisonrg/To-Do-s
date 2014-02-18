@@ -33,7 +33,9 @@ switch ($_SESSION['mode']) {
 		break;
 	case 'register_result':
 		if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password'])) {
+			
 			$register_result = user_register(trim($_POST['name']),sha1($_POST['password']),trim($_POST['email']));
+			
 			if ($register_result>=0) {
 				$_SESSION['valid_user_id'] = $register_result;
 				$msg = "Login successfully!<br/>You have now logged in as <strong>".$_POST['name']."</strong>.<br/>";

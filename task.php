@@ -29,7 +29,10 @@
 		$_SESSION['mode'] = 'update';
 	}
 
+
+
 	showHeader("Tasks");
+
 	if (isset($_SESSION['valid_user_id'])) {
     	showBar($_SESSION['valid_user_id']);
 	}
