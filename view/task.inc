@@ -92,8 +92,10 @@
 						echo "<tr>";
 						echo "<td><a href=task.php?task_id=".$tasks[$i]['id'].">".$tasks[$i]['title']."</a></td>";
 						echo "<td><progress max=\"100\" value=\"".((1 - $tasks[$i]['remainingslot']/$tasks[$i]['totalslot']) * 100)."\"</td>";
-						echo "<td><a href=task.php?task_id=".$tasks[$i]['id']."&do=1".">Do</a>";
-						echo " <a href=task.php?task_id=".$tasks[$i]['id'].">View<a></td>";
+						echo "<td><form action=\"index.php\" method=\"post\">";
+						echo "<input type=\"hidden\" name=\"taskid\" value=\"".$tasks[$i]['id']."\">";
+						echo "<input type=\"submit\" name=\"submit\" value=\"do\">";
+						echo "</form></td>";
 						echo "</tr>";
 					}
 				?>

@@ -144,7 +144,7 @@ function varify_user_and_task($userid, $taskid) {
 function add_task($userid, $title, $description, $slot) {
 	$dbconn = db_connect();
 			
-	$result = pg_prepare($dbconn, "create", 'insert into tasks values(nextval(\'users_id_seq\'), $1 , $2 , $3, $4, $4)');
+	$result = pg_prepare($dbconn, "create", 'INSERT INTO tasks VALUES(nextval(\'users_id_seq\'), $1 , $2 , $3, $4, $4)');
 	$result = pg_execute($dbconn, "create", array($userid, $title, $description, $slot));
 			
 	if ($result) {
@@ -157,7 +157,7 @@ function add_task($userid, $title, $description, $slot) {
 
 function update_task($id, $title, $description, $totalslot, $remainingslot) {
 	$dbconn = db_connect();
-	$result = pg_prepare($dbconn, "update", 'update tasks set title=$1, description=$2, totalslot=$3, remainingslot=$4 where id=$5');
+	$result = pg_prepare($dbconn, "update", 'UPDATE tasks SET title=$1, description=$2, totalslot=$3, remainingslot=$4 WHERE id=$5');
 	$result = pg_execute($dbconn, "update", array($title, $description, $totalslot, $remainingslot, $id));
 			
 	if ($result) {
@@ -169,10 +169,14 @@ function update_task($id, $title, $description, $totalslot, $remainingslot) {
 
 function do_task($id, $remainingslot) {
 	$dbconn = db_connect();
-	$result = pg_prepare($dbconn, "do", 'update tasks set remainingslot=$2 where id=$1');
-	$result = pg_execute($dbconn, "do", array($id, $remainingslot - 1));
-			
-	if ($result) {
+	$result = pg_prepare($dbconn, "do", 'UPDATE tasks SET remainingslot=$2 WHERE id=$1');
+	$result = pg_execute($dbconn, "do", array($id, $remainingslot));
+
+	$result2 = pg_prepare($dbconn, "addexp", 'SELECT * FROM tasks WHERE id=$1');
+	$result2 = pg_execute($dbconn, "addexp", array($id));
+	$row = pg_fetch_array($result2);
+
+	if ($result && add_exp($row['userid'], 25 / $row['totalslot'])) {//magic number
 		return true;
 	} else {
 		return false;
@@ -184,7 +188,7 @@ function add_exp($userid, $exp) {
 	$new_exp = $row['exp'] + $exp;
 
 	$dbconn = db_connect();
-	$result = pg_prepare($dbconn, "add_exp", 'update users set exp=$2, level=$3 where id=$1');
+	$result = pg_prepare($dbconn, "add_exp", 'UPDATE users SET exp=$2, level=$3 WHERE id=$1');
 	$result = pg_execute($dbconn, "add_exp", array($userid, round($new_exp), ceil($new_exp / 20)));//magic number here, need improvement
 
 	if ($result) {

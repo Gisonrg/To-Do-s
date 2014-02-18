@@ -20,9 +20,11 @@ if (isset($_SESSION['valid_user_id'])) {
 echo "<div class=\"content\">";
 
 if (isset($_SESSION['valid_user_id'])) {
-
+	if (isset($_REQUEST['submit']) && ($_REQUEST['submit'] == "do")) {
+		$row = retrieve_task_info($_REQUEST['taskid']);
+		do_task($_REQUEST['taskid'], $row['remainingslot'] - 1);
+	}
     show_ongoing_existing_task($_SESSION['valid_user_id']);
-    
 }
 
 

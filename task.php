@@ -83,15 +83,6 @@
 				echo "failed.";
 			}
 			break;
-		case 'do':
-			$row = retrieve_task_info($_REQUEST['task_id']);
-			if (do_task($_REQUEST['task_id'], $row['remainingslot'])) {
-				add_exp($_SESSION['valid_user_id'], 25 / $row['totalslot']);//magic number here
-				header("Refresh: 0; url=index.php");
-			} else {
-				echo "failed.";
-			}
-			break;
 	}
 	echo "</div>";
 
