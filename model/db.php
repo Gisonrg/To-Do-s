@@ -183,7 +183,7 @@ function do_task($id, $remainingslot) {
 	$row = pg_fetch_array($result2);
 
 	if ($result && add_exp($row['userid'], 25 / $row['totalslot'])) {//magic number
-		if (($row['remainingslot'] == 1) && (event_task_completed($id))) {
+		if (($row['remainingslot'] == 0) && (event_task_completed($id))) {
 			return true;
 		} else {
 			return false;
@@ -205,8 +205,14 @@ function add_exp($userid, $exp) {
 	$dbconn = db_connect();
 	$result = pg_prepare($dbconn, "add_exp", 'UPDATE users SET exp=$2, level=$3 WHERE id=$1');
 	$result = pg_execute($dbconn, "add_exp", array($userid, round($new_exp), $new_level));//magic number here, need improvement
-
-	if (($flag == 1) && (event_level_up($userid)) && ($result)) {
+ 
+	if ($flag == 1) {
+		if ((event_level_up($userid)) && ($result)) {
+			return true;
+		} else {
+			return false;
+		}
+	} else if ($result) {
 		return true;
 	} else {
 		return false;
