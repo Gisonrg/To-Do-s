@@ -59,6 +59,7 @@ function event_task_completed($taskid) {
 	if ($result) {
 		return true;
 	} else {
+
 		return false;
 	}
 }
@@ -80,9 +81,9 @@ function retrieve_current_events() {
 	while ($row = pg_fetch_array($result)) {
 		$events[] = $row;
 	}
+	usort($events, "events_sort");
 	if (isset($events)) {
 		if (count($events) > 10) {
-			usort($events, "events_sort");
 			$events = array_slice($events, 0, 9);
 		}
 		return $events;
@@ -90,6 +91,5 @@ function retrieve_current_events() {
 		return false;
 	}
 }
-
 
 ?>

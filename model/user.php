@@ -2,6 +2,7 @@
 
 require_once("config/config.inc");
 
+
 function user_authenticate($name, $pwd) {
 	$dbconn = db_connect();
 	$result = pg_prepare($dbconn, "update", 'SELECT * FROM users WHERE name = $1');
@@ -22,6 +23,7 @@ function user_authenticate($name, $pwd) {
 		return -2; //does not exit
 	}
 }
+
 
 function user_register($name, $password, $email) {
 	$dbconn = db_connect();
@@ -82,7 +84,32 @@ function retrieve_user_info($id) {
 	}
 }
 
+function retrieve_leader_info() {
+	function leaders_sort($a, $b) {
+		if ($a['exp'] == $b['exp']) {
+			return 0;
+		} else {
+			return $a['exp'] > $b['exp']? -1 : 1;
+		}
+	}
 
+	$dbconn = db_connect();		
+	$result = pg_prepare($dbconn, "getleaders", 'SELECT name, level, exp FROM users');
+	$result = pg_execute($dbconn, "getleaders", array());
+
+	while ($row = pg_fetch_array($result)) {
+		$leaders[] = $row;
+	}
+	if (isset($leaders)) {
+		usort($leaders, "leaders_sort");
+		if (count($leaders) > 10) {
+			$leaders = array_slice($leaders, 0, 9);
+		}
+		return $leaders;
+	} else {
+		return false;
+	}
+}
 
 function add_exp($userid, $exp) {
 	$row = retrieve_user_info($userid);

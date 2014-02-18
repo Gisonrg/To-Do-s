@@ -64,7 +64,7 @@
 				<textarea name="description" rows="5" placeholder="Your description for the task" required=""></textarea>
 				<br/>
 				<label for="name">Slot (30 min as a unit)</label>
-				<input type="number" name="duration" min="1" max="20" />
+				<input type="number" name="duration" min="1" max="20" required="required" />
 				<br />
 				<input type="submit" name="submit" value="Create">
 			</form>
