@@ -10,6 +10,8 @@ require_once("view/task.inc");
 //set highlight item in the navigation bar
 $_SESSION['active']='Home';
 
+$events = retrieve_current_events();
+
 if (isset($_SESSION['valid_user_id'])) {
 
 	//detect user do task
