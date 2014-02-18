@@ -24,7 +24,10 @@ if (isset($_SESSION['valid_user_id'])) {
     show_ongoing_existing_task($_SESSION['valid_user_id']);
     show_news();
 } else {
+	echo "</div>";
 	showLoginBar();
+	echo "<div class=\"content\">";
+	show_news();
 }
 
 
