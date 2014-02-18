@@ -141,9 +141,8 @@ function varify_user_and_task($userid, $taskid) {
 }
 
 function add_task($userid, $title, $description, $slot) {
-	$dbconn = db_connect();
-			
-	$result = pg_prepare($dbconn, "create", 'INSERT INTO tasks VALUES(nextval(\'users_id_seq\'), $1 , $2 , $3, $4, $4)');
+	$dbconn = db_connect();		
+	$result = pg_prepare($dbconn, "create", 'INSERT INTO tasks VALUES(nextval(\'tasks_id_seq\'), $1 , $2 , $3, $4, $4)');
 	$result = pg_execute($dbconn, "create", array($userid, $title, $description, $slot));
 			
 	if ($result) {
@@ -197,5 +196,58 @@ function add_exp($userid, $exp) {
 	}
 }
 
+function event_new_user($userid) {
+	$row = retrieve_user_info($userid);
+	$localtime = localtime(time(), true);
+	$msg = "At ".($localtime['tm_year'] + 1900)."-".($localtime['tm_mon'] + 1)."-".($localtime['tm_mday'] + 1)." ".$localtime['tm_hour'].":".$localtime['tm_min'].":".$localtime['tm_sec']." ".$row['name']." joined us!";
+	$dbconn = db_connect();		
+	$result = pg_prepare($dbconn, "new_user", 'INSERT INTO events VALUES(nextval(\'events_id_seq\'), $1)');
+	$result = pg_execute($dbconn, "new_user", array($msg));
 
+	if ($result) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function event_level_up($userid) {
+
+}
+
+function event_new_task($taskid) {
+
+}
+
+function event_task_completed($taskid) {
+
+}
+
+function retrieve_current_events() {
+	
+	function events_sort($a, $b) {
+		if ($a['id'] == $b['id']) {
+			return 0;
+		} else {
+			return $a['id'] > $b['id']? 1 : -1;
+		}
+	}
+
+	$dbconn = db_connect();		
+	$result = pg_prepare($dbconn, "getevents", 'SELECT * FROM events');
+	$result = pg_execute($dbconn, "getevents", array());
+
+	while ($row = pg_fetch_array($result)) {
+		$events[] = $row;
+	}
+	if (isset($events)) {
+		if (count($events) > 10) {
+			usort($events, "events_sort");
+			$events = array_slice($events, 0, 9);
+		}
+		return $events;
+	} else {
+		return false;
+	}
+}
 ?>

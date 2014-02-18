@@ -38,7 +38,6 @@ switch ($_SESSION['mode']) {
 		header("url=index.php");
 		break;
 	default:
-		# code...
 		break;
 }
 

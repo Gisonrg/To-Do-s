@@ -82,7 +82,7 @@
 		}
 		echo "<span class='tag'>&nbsp;Ongoing&nbsp;</span>";
 		if (!$tasks) {
-			echo "You don't have any task to do!";
+			echo "<div class=\"view-warning\">You don't have any task to do!</div>";
 		} else {
 			?>
 			<table class="view-task">
@@ -99,8 +99,30 @@
 					}
 				?>
 			</table>
+			<br />
 			<?php
 		}
+	}
+
+	// show_news()
+	function show_news() {
+		?>
+		<br />
+			<span class='tag'>&nbsp;Wat's new&nbsp;</span>
+			<table class="view-news">
+				<?php
+				$events = retrieve_current_events();
+				if (count($events) == 0) {
+					echo "no news!";
+				} else {
+					for ($i = 0; $i < count($events); $i++) {
+						echo "<tr><td>".$events[$i]['content']."</td></tr>";
+					}
+				}
+
+				?>
+			</table>
+		<?php
 	}
 
 	// show_updating_form($taskid)
