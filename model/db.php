@@ -67,7 +67,6 @@ function user_authenticate($name, $pwd) {
 
 function retrieve_user_info($id) {
 	$dbconn = db_connect();
-
 	$result = pg_prepare($dbconn, "", 'SELECT * FROM users WHERE id = $1');
 	$result = pg_execute($dbconn, "", array($id));
 
@@ -143,13 +142,19 @@ function varify_user_and_task($userid, $taskid) {
 }
 
 function add_task($userid, $title, $description, $slot) {
-	$dbconn = db_connect();
-			
-	$result = pg_prepare($dbconn, "create", 'INSERT INTO tasks VALUES(nextval(\'users_id_seq\'), $1 , $2 , $3, $4, $4)');
+	$dbconn = db_connect();		
+	$result = pg_prepare($dbconn, "create", 'INSERT INTO tasks VALUES(nextval(\'tasks_id_seq\'), $1 , $2 , $3, $4, $4)');
 	$result = pg_execute($dbconn, "create", array($userid, $title, $description, $slot));
 			
 	if ($result) {
-		return true;
+		$result2 = pg_prepare($dbconn, "read", 'SELECT id FROM tasks WHERE title=$1 and userid=$2');
+		$result2 = pg_execute($dbconn, "read", array($title, $userid));
+		if ($row = pg_fetch_array($result2)) {
+			event_new_task($row['id']);
+			return true;
+		} else {
+			return false;
+		}
 	} else {
 		return false;
 	}
@@ -178,7 +183,11 @@ function do_task($id, $remainingslot) {
 	$row = pg_fetch_array($result2);
 
 	if ($result && add_exp($row['userid'], 25 / $row['totalslot'])) {//magic number
-		return true;
+		if (($row['remainingslot'] == 1) && (event_task_completed($id))) {
+			return true;
+		} else {
+			return false;
+		}
 	} else {
 		return false;
 	}
@@ -187,10 +196,35 @@ function do_task($id, $remainingslot) {
 function add_exp($userid, $exp) {
 	$row = retrieve_user_info($userid);
 	$new_exp = $row['exp'] + $exp;
+	$new_level = ceil($new_exp / 20);
+	$flag = 0;
+	if ($new_level > $row['level']) {
+		$flag = 1;
+	}
 
 	$dbconn = db_connect();
 	$result = pg_prepare($dbconn, "add_exp", 'UPDATE users SET exp=$2, level=$3 WHERE id=$1');
-	$result = pg_execute($dbconn, "add_exp", array($userid, round($new_exp), ceil($new_exp / 20)));//magic number here, need improvement
+	$result = pg_execute($dbconn, "add_exp", array($userid, round($new_exp), $new_level));//magic number here, need improvement
+
+	if (($flag == 1) && (event_level_up($userid)) && ($result)) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function generate_time() {
+	$localtime = localtime(time(), true);
+	$msg = ($localtime['tm_year'] + 1900)."-".($localtime['tm_mon'] + 1)."-".($localtime['tm_mday'] + 1)." ".($localtime['tm_hour']-17).":".$localtime['tm_min'].":".$localtime['tm_sec'];
+	return $msg;
+}
+
+function event_new_user($userid) {
+	$row = retrieve_user_info($userid);
+	$msg = "At ".generate_time()." ".$row['name']." joined us!";
+	$dbconn = db_connect();		
+	$result = pg_prepare($dbconn, "new_user", 'INSERT INTO events VALUES(nextval(\'events_id_seq\'), $1)');
+	$result = pg_execute($dbconn, "new_user", array($msg));
 
 	if ($result) {
 		return true;
@@ -199,5 +233,75 @@ function add_exp($userid, $exp) {
 	}
 }
 
+function event_level_up($userid) {
+	$row = retrieve_user_info($userid);
+	$msg = "At ".generate_time()." ".$row['name']." reached level ".$row['level'] ."!";
+	$dbconn = db_connect();		
+	$result = pg_prepare($dbconn, "level_up", 'INSERT INTO events VALUES(nextval(\'events_id_seq\'), $1)');
+	$result = pg_execute($dbconn, "level_up", array($msg));
 
+	if ($result) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function event_new_task($taskid) {
+	$task = retrieve_task_info($taskid);
+	$row = retrieve_user_info($task['userid']);
+	$msg = "At ".generate_time()." ".$row['name']." started task: ".$task['title']."!";
+	$dbconn = db_connect();		
+	$result = pg_prepare($dbconn, "new_task", 'INSERT INTO events VALUES(nextval(\'events_id_seq\'), $1)');
+	$result = pg_execute($dbconn, "new_task", array($msg));
+
+	if ($result) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function event_task_completed($taskid) {
+	$task = retrieve_task_info($taskid);
+	$row = retrieve_user_info($task['userid']);
+	$msg = "At ".generate_time()." ".$row['name']." completed task: ".$task['title']."!";
+	$dbconn = db_connect();		
+	$result = pg_prepare($dbconn, "task_completed", 'INSERT INTO events VALUES(nextval(\'events_id_seq\'), $1)');
+	$result = pg_execute($dbconn, "task_completed", array($msg));
+
+	if ($result) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function retrieve_current_events() {
+	
+	function events_sort($a, $b) {
+		if ($a['id'] == $b['id']) {
+			return 0;
+		} else {
+			return $a['id'] > $b['id']? 1 : -1;
+		}
+	}
+
+	$dbconn = db_connect();		
+	$result = pg_prepare($dbconn, "getevents", 'SELECT * FROM events');
+	$result = pg_execute($dbconn, "getevents", array());
+
+	while ($row = pg_fetch_array($result)) {
+		$events[] = $row;
+	}
+	if (isset($events)) {
+		if (count($events) > 10) {
+			usort($events, "events_sort");
+			$events = array_slice($events, 0, 9);
+		}
+		return $events;
+	} else {
+		return false;
+	}
+}
 ?>

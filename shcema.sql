@@ -12,12 +12,19 @@ CREATE TABLE users (
 );
 
 -- Dropping and creating a table for task
-DROP TABLE task;
+DROP TABLE tasks;
 CREATE TABLE tasks (
 	id serial PRIMARY KEY NOT NULL,
 	userid integer,
 	title VARCHAR(40),
-	description VARCHAR(400),
+	description VARCHAR(255),
 	totalslot integer,
 	remainingslot integer
+);
+
+-- Dropping and creating a table for event archives
+DROP TABLE events;
+CREATE TABLE events (
+	id serial PRIMARY KEY NOT NULL,
+	content text
 );

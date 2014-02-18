@@ -41,6 +41,7 @@ switch ($_SESSION['mode']) {
 				$msg = "Login successfully!<br/>You have now logged in as <strong>".$_POST['name']."</strong>.<br/>";
 				$msg = $msg."You are now being redirect to the homepage...";
 				display_success($msg);
+				event_new_user($register_result);
 				header("Refresh: 3; url=index.php");
 			} else {
 				if ($register_result==-1) {
