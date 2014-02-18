@@ -20,11 +20,11 @@
 					for ($i = 0; $i < count($tasks); $i++) {
 					?>
 						<tr>
-						<td><a href=task.php?task_id="<?php echo($tasks[$i]['id']);?>"><?php echo($tasks[$i]['title']);?></a></td>
+						<td><a href=task.php?mode=edit&task_id=<?echo $tasks[$i]['id']?>><?php echo($tasks[$i]['title']);?></a></td>
 						<td><progress max="100" value="<?php echo((1 - $tasks[$i]['remainingslot']/$tasks[$i]['totalslot']) * 100)?>"></td>
 						<td><form action="" method="post">
-						<input type="hidden" name="taskid" value="<?php echo($tasks[$i]['id']) ?>">
-						<input type="submit" name="submit" value="do">
+							<input type="hidden" name="taskid" value="<?php echo($tasks[$i]['id']) ?>">
+							<input type="submit" name="submit" value="do">
 						</form></td>
 						</tr>
 					<?php }		

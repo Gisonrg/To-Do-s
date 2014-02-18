@@ -20,7 +20,7 @@
 				<img src="static/img/right.gif" alt="Success">
 				<?echo $su_msg;?>
 				</div>
-			<?php header("Refresh: 1.5; url=account.new.php");
+			<?php header("Refresh: 1.5; url=account.php");
 			} ?>	
 
 				

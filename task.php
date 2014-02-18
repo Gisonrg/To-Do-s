@@ -1,95 +1,72 @@
-<!--task.php-->
-<?php 
-	require_once("config/config.inc");
-	session_save_path(SESSION_SAVED);
-	session_start();
+<?php
+require_once("config/config.inc");
+session_save_path(SESSION_SAVED);
+session_start();
 
-	require_once("model/db.php");
-	require_once("controller/userController.php");
-	require("view/task.inc");
-	require("view/header.inc");
-	require("view/footer.inc");
+require_once("model/db.php");
+require_once("model/user.php");
+require_once("model/task.php");
+require_once("model/event.php");
 
-	// default mode 
-	$_SESSION['mode'] = 'view';
-	// creating mode
-	if ((isset($_REQUEST['mode'])) && ($_REQUEST['mode'] == 'create')) {
-		$_SESSION['mode'] = 'create';
+//set highlight item in the navigation bar
+$_SESSION['active']='Task';
+
+if (!isset($_SESSION['valid_user_id'])) {
+	header("Refresh: 0; url=index.php");
+	exit;	
+} 
+
+
+$er_msg = "";
+$su_msg = "";
+
+// // pull the user information from the database
+$row = retrieve_user_info($_SESSION['valid_user_id']);
+$tasks = retrieve_tasks_info($_SESSION['valid_user_id']);
+
+//do a task
+//detect user do task
+if (isset($_REQUEST['submit']) && ($_REQUEST['submit'] == "do")) {
+	$row = retrieve_task_info($_REQUEST['taskid']);
+	do_task($_REQUEST['taskid'], $row['remainingslot'] - 1);
+}
+//reload for display
+$row = retrieve_user_info($_SESSION['valid_user_id']);
+$tasks = retrieve_tasks_info($_SESSION['valid_user_id']);
+
+
+// Create a task 
+if (isset($_REQUEST['submit']) && $_REQUEST['submit'] =='Create') {
+	if (add_task($_SESSION['valid_user_id'], $_REQUEST['title'], $_REQUEST['description'], $_REQUEST['duration'])) {
+		$su_msg = "Create successfully!<br/>Reloading...";
+		$tasks = retrieve_tasks_info($_SESSION['valid_user_id']);
+		$_REQUEST['mode'] = 'create';
+	} else {
+		$er_msg = "Error!";
 	}
-	// creating mode
-	if ((isset($_REQUEST['task_id'])) && (varify_user_and_task($_SESSION['valid_user_id'], $_REQUEST['task_id']))) {
-		if (isset($_REQUEST['do'])) {
-			$_SESSION['mode'] = 'do';
+}
+
+if (isset($_REQUEST['mode']) && $_REQUEST['mode'] =='create') {
+	require('view/task_create.view.php');
+	exit();
+}
+
+//updating a task
+if ((isset($_REQUEST['task_id'])) && isset($_REQUEST['mode'])  && $_REQUEST['mode']=="edit" ) {
+	if (isset($_REQUEST['submit']) && ($_REQUEST['submit'] == "Update")) {
+		$row = retrieve_task_info($_REQUEST['task_id']);
+		if (update_task($_REQUEST['task_id'], $_REQUEST['title'], $_REQUEST['description'], $_REQUEST['duration'], $row['remainingslot'] + $_REQUEST['duration'] - $row['totalslot'])){
+			$su_msg = "Update successfully!<br/>Reloading...";
 		} else {
-			$_SESSION['mode'] = 'edit';
+			$er_msg = "Error!";
 		}
 	}
-	// inserting mode
-	if (isset($_POST['submit']) && $_POST['submit'] =='Create') {
-		$_SESSION['mode'] = 'insert';
-	}
-	// updating mode
-	if (isset($_POST['submit']) && $_POST['submit'] =='Update') {
-		$_SESSION['mode'] = 'update';
-	}
+	$task = retrieve_task_info($_REQUEST['task_id']);
+	require('view/task_edit.view.php');
+	exit();
+}
+
+require('view/task.view.php');
 
 
-
-	showHeader("Tasks");
-
-	if (isset($_SESSION['valid_user_id'])) {
-    	showBar($_SESSION['valid_user_id']);
-	}
-	echo "<div class=\"content\">";
-
-
-
-	switch ($_SESSION['mode']) {
-		case 'view':
-			if (!isset($_SESSION['valid_user_id'])) {
-				echo "you didn't login";
-				header("Refresh: 3; url=login.php");
-			} else {
-				if (isset($_REQUEST['submit']) && ($_REQUEST['submit'] == "do")) {
-					$row = retrieve_task_info($_REQUEST['taskid']);
-					do_task($_REQUEST['taskid'], $row['remainingslot'] - 1);
-				}
-			?>
-			<form id="task-option" >
-				<input type="hidden" name="mode" value="create">
-				<input type="submit" class="button" value="Creating new task">
-			</form>
-			<?php
-				show_existing_task($_SESSION['valid_user_id']);
-			}
-
-			break;
-		case 'create':
-			show_creating_form();
-			break;
-		case 'insert':
-			if (add_task($_SESSION['valid_user_id'], $_REQUEST['title'], $_REQUEST['description'], $_REQUEST['duration'])) {
-				echo "Create successfully!";
-				header("Refresh: 3; url=task.php");
-			} else {
-				echo "Failed";
-				header("Refresh: 3; url=task.php");
-			}
-			break;
-		case 'edit':
-			show_updating_form($_REQUEST['task_id']);
-			break;
-		case 'update':
-			$row = retrieve_task_info($_REQUEST['task_id']);
-			if (update_task($_REQUEST['task_id'], $_REQUEST['title'], $_REQUEST['description'], $_REQUEST['duration'], $row['remainingslot'] + $_REQUEST['duration'] - $row['totalslot'])){
-				echo "success!";
-			} else {
-				echo "failed.";
-			}
-			break;
-	}
-	echo "</div>";
-
-
-	showFooter();
 ?>

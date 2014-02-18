@@ -39,7 +39,7 @@
 					<?echo $msg;?>
 				</div>
 		        <?php  
-		        header("Refresh: 3; url=index.new.php");
+		        header("Refresh: 3; url=index.php");
 		    		}
 		    	}
 				?>
