@@ -10,7 +10,7 @@ require_once("model/user.php");
 $_SESSION['active']='Account';
 
 if (!isset($_SESSION['valid_user_id'])) {
-	header("Refresh: 0; url=index(new).php");
+	header("Refresh: 0; url=index.new.php");
 	exit;	
 } 
 
