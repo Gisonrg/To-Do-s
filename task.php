@@ -50,6 +50,10 @@
 				echo "you didn't login";
 				header("Refresh: 3; url=login.php");
 			} else {
+				if (isset($_REQUEST['submit']) && ($_REQUEST['submit'] == "do")) {
+					$row = retrieve_task_info($_REQUEST['taskid']);
+					do_task($_REQUEST['taskid'], $row['remainingslot'] - 1);
+				}
 			?>
 			<form id="task-option" >
 				<input type="hidden" name="mode" value="create">

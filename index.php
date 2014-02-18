@@ -11,12 +11,6 @@ require_once("view/task.inc");
 
 showHeader("Home Page");
 
-
-if (isset($_SESSION['valid_user_id'])) {
-    showBar($_SESSION['valid_user_id']);
-} else {
-	showLoginBar();
-}
 echo "<div class=\"content\">";
 
 if (isset($_SESSION['valid_user_id'])) {
@@ -24,17 +18,13 @@ if (isset($_SESSION['valid_user_id'])) {
 		$row = retrieve_task_info($_REQUEST['taskid']);
 		do_task($_REQUEST['taskid'], $row['remainingslot'] - 1);
 	}
+	echo "</div>";
+	showBar($_SESSION['valid_user_id']);
+	echo "<div class=\"content\">";
     show_ongoing_existing_task($_SESSION['valid_user_id']);
+} else {
+	showLoginBar();
 }
-
-
-
-
-
-
-
-
-
 
 
 
