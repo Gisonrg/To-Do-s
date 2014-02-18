@@ -79,6 +79,33 @@ function retrieve_user_info($id) {
 	}
 }
 
+function retrieve_leader_info() {
+	function leaders_sort($a, $b) {
+		if ($a['exp'] == $b['exp']) {
+			return 0;
+		} else {
+			return $a['exp'] > $b['exp']? -1 : 1;
+		}
+	}
+
+	$dbconn = db_connect();		
+	$result = pg_prepare($dbconn, "getleaders", 'SELECT name, level, exp FROM users');
+	$result = pg_execute($dbconn, "getleaders", array());
+
+	while ($row = pg_fetch_array($result)) {
+		$leaders[] = $row;
+	}
+	if (isset($leaders)) {
+		usort($leaders, "leaders_sort");
+		if (count($leaders) > 10) {
+			$leaders = array_slice($leaders, 0, 9);
+		}
+		return $leaders;
+	} else {
+		return false;
+	}
+}
+
 function retrieve_tasks_info($user_id) {
 	$dbconn = db_connect();
 	$result = pg_prepare($dbconn, "gettask", 'SELECT * FROM tasks WHERE userid = $1');
@@ -279,6 +306,7 @@ function event_task_completed($taskid) {
 	if ($result) {
 		return true;
 	} else {
+
 		return false;
 	}
 }
@@ -300,9 +328,9 @@ function retrieve_current_events() {
 	while ($row = pg_fetch_array($result)) {
 		$events[] = $row;
 	}
+	usort($events, "events_sort");
 	if (isset($events)) {
 		if (count($events) > 10) {
-			usort($events, "events_sort");
 			$events = array_slice($events, 0, 9);
 		}
 		return $events;
