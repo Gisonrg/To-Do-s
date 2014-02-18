@@ -24,10 +24,9 @@ if (isset($_SESSION['valid_user_id'])) {
 	if ($register_result  >= 0) {
 
 		$_SESSION['valid_user_id'] = $register_result;
-
-		header("Refresh: 0; url=index(new).php");
-		exit;
-
+		$msg = "Register successfully!<br/>You have now logged in as <strong>".$_POST['name']."</strong>.<br/>";
+		$msg = $msg."You are now being redirect to the homepage...";
+		
 	} else {
 		$username=$_POST['name'];
 		$email =$_POST['email'];

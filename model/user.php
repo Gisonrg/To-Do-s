@@ -2,6 +2,11 @@
 
 require_once("config/config.inc");
 
+function check_existing($name, $email) {
+	
+}
+
+
 
 function update_user($name, $email, $id, $password=false) {
 	$dbconn = db_connect();

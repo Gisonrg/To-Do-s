@@ -138,6 +138,9 @@ b, u, i {
 	-moz-border-radius:25px; 
 
 }
+.msg-success > img {
+	vertical-align:middle;
+}
 
 .msg-error {
 	width: 40%;

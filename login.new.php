@@ -21,8 +21,8 @@ if (isset($_SESSION['valid_user_id'])) {
 
 	if ($login_result  >= 0) {
 		$_SESSION['valid_user_id'] = $login_result;
-		header("Refresh: 0; url=index(new).php");
-		exit;
+		$msg = "Login successfully!<br/>You have now logged in as <strong>".$_POST['name']."</strong>.<br/>";
+		$msg = $msg."You are now being redirect to the homepage...";
 	} else {
 		$username=$_POST['name'];
 		$msg = "Login unsuccessfully! Please try again";
