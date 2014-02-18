@@ -15,7 +15,6 @@
 
 
     <input type="submit" name="submit" value="Submit">
-    <input type="submit" name="submit" value="Reset">
   </form>
 </div>
 
