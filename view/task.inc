@@ -31,8 +31,12 @@
 						echo "<td>".$tasks[$i]['description']."</td>";
 						echo "<td><progress max=\"100\" value=\"".((1 - $tasks[$i]['remainingslot']/$tasks[$i]['totalslot']) * 100)."\"</td>";
 						echo "<td>"."25"."</td>";
-						echo "<td><a href=task.php?task_id=".$tasks[$i]['id'].">Do</a>
-								<a href=task.php?task_id=".$tasks[$i]['id'].">View<a></td>";
+						if ($tasks[$i]['remainingslot'] > 0) {
+							echo "<td><a href=task.php?task_id=".$tasks[$i]['id']."&do=1".">Do</a>";
+						} else {
+							echo "<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+						}
+						echo " <a href=task.php?task_id=".$tasks[$i]['id'].">View<a></td>";
 						echo "<td>Ongoing</td>";
 						echo "</tr>";
 
@@ -65,17 +69,50 @@
 		<?php
 	}
 
+	// show_ongoing_existing_task($id)
+	function show_ongoing_existing_task($userid) {
+		if (!isset($userid)) {
+			echo "you didn't login";
+			header("Refresh: 3; url=login.php");
+		} else {
+			$tasks = retrieve_ongoing_tasks_info($userid);
+		}
+		if (!$tasks) {
+			echo "You don't have any task to do!";
+		} else {
+			?>
+			<table class="view-task">
+				<tr>
+					<th>Title</th>
+					<th>Progress</th>
+					<th>Option</th>
+				</tr>
+				<?php
+					for ($i = 0; $i < count($tasks); $i++) {
+						echo "<tr>";
+						echo "<td><a href=task.php?task_id=".$tasks[$i]['id'].">".$tasks[$i]['title']."</a></td>";
+						echo "<td><progress max=\"100\" value=\"".((1 - $tasks[$i]['remainingslot']/$tasks[$i]['totalslot']) * 100)."\"</td>";
+						echo "<td><a href=task.php?task_id=".$tasks[$i]['id']."&do=1".">Do</a>";
+						echo " <a href=task.php?task_id=".$tasks[$i]['id'].">View<a></td>";
+						echo "</tr>";
+					}
+				?>
+			</table>
+			<?php
+		}
+	}
+
 	// show_updating_form($taskid)
 	function show_updating_form($taskid) {
 		$row = retrieve_task_info($taskid);
 		?>
 		<div class="task-update">
-			<form  method="post" action="" role="form">
+			<form  method="post" action="" role="form" class="task-form">
 				<h2>Updating task</h2>
 				<label for="name">Title</label>
 				<input type="text" name="title" placeholder="Your task title"  value="<?php echo $row['title'];?>" >
-				<br/>
-				<label for="name">Description</label>
+				<br />
+				<label id="description">Description</label>
 				<textarea name="description" rows="5" placeholder="Your description for the task" required=""><?php echo $row['description'];?></textarea>
 				<br/>
 				<label for="name">Slot (30 min as a unit)</label>

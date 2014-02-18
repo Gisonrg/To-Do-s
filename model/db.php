@@ -95,6 +95,22 @@ function retrieve_tasks_info($user_id) {
 	}
 }
 
+function retrieve_ongoing_tasks_info($user_id) {
+	$dbconn = db_connect();
+	$result = pg_prepare($dbconn, "gettask", 'SELECT * FROM tasks WHERE userid = $1 and remainingslot > 0');
+	$result = pg_execute($dbconn, "gettask", array($user_id));
+
+
+	while ($row = pg_fetch_array($result)) {
+		$tasks[] = $row;
+	}
+	if (!isset($tasks)) {
+		return false;
+	} else {
+		return $tasks;
+	}
+}
+
 function retrieve_task_info($task_id) {
 	$dbconn = db_connect();
 
@@ -149,7 +165,33 @@ function update_task($id, $title, $description, $totalslot, $remainingslot) {
 	} else {
 		return false;
 	}
+}
 
+function do_task($id, $remainingslot) {
+	$dbconn = db_connect();
+	$result = pg_prepare($dbconn, "do", 'update tasks set remainingslot=$2 where id=$1');
+	$result = pg_execute($dbconn, "do", array($id, $remainingslot - 1));
+			
+	if ($result) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function add_exp($userid, $exp) {
+	$row = retrieve_user_info($userid);
+	$new_exp = $row['exp'] + $exp;
+
+	$dbconn = db_connect();
+	$result = pg_prepare($dbconn, "add_exp", 'update users set exp=$2, level=$3 where id=$1');
+	$result = pg_execute($dbconn, "add_exp", array($userid, round($new_exp), ceil($new_exp / 20)));//magic number here, need improvement
+
+	if ($result) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 

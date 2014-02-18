@@ -6,12 +6,12 @@
 		<fieldset>
 			<label for="name">Username</label>
 			<input type="text" name="name" placeholder="User Name" required="" autofocus="">
-			<br/>
+			<br />
 			<label for="name">Password</label>
 			<input type="password" name="password" placeholder="Password" required="">
-			<br/>
+			<br />
 			<p><a href="find_password.php">Forget the password?</a></p>
-			<br/>
+			<br />
 		</fieldset>
 		<input type="submit" name="submit"value="login">
 	</form>

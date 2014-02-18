@@ -18,7 +18,11 @@
 	}
 	// creating mode
 	if ((isset($_REQUEST['task_id'])) && (varify_user_and_task($_SESSION['valid_user_id'], $_REQUEST['task_id']))) {
-		$_SESSION['mode'] = 'edit';
+		if (isset($_REQUEST['do'])) {
+			$_SESSION['mode'] = 'do';
+		} else {
+			$_SESSION['mode'] = 'edit';
+		}
 	}
 	// inserting mode
 	if (isset($_POST['submit']) && $_POST['submit'] =='Create') {
@@ -75,6 +79,15 @@
 			$row = retrieve_task_info($_REQUEST['task_id']);
 			if (update_task($_REQUEST['task_id'], $_REQUEST['title'], $_REQUEST['description'], $_REQUEST['duration'], $row['remainingslot'] + $_REQUEST['duration'] - $row['totalslot'])){
 				echo "success!";
+			} else {
+				echo "failed.";
+			}
+			break;
+		case 'do':
+			$row = retrieve_task_info($_REQUEST['task_id']);
+			if (do_task($_REQUEST['task_id'], $row['remainingslot'])) {
+				add_exp($_SESSION['valid_user_id'], 25 / $row['totalslot']);//magic number here
+				header("Refresh: 0; url=index.php");
 			} else {
 				echo "failed.";
 			}
