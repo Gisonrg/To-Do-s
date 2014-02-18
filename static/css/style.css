@@ -493,6 +493,14 @@ b, u, i {
     font-family: Georgia;
     font-size: 1em;
 }
+.tag {
+	background-color: #f7f5fa;
+	font-family: Helvetica;
+	width: 0px;
+	box-shadow: 10px 8px 5px #888888;
+	position: relative;
+	z-index:-1;
+}
 
 progress[value] {
   /* Reset the default appearance */

@@ -80,6 +80,7 @@
 		} else {
 			$tasks = retrieve_ongoing_tasks_info($userid);
 		}
+		echo "<span class='tag'>&nbsp;Ongoing&nbsp;</span>";
 		if (!$tasks) {
 			echo "You don't have any task to do!";
 		} else {

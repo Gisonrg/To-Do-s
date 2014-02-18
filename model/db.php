@@ -66,7 +66,6 @@ function user_authenticate($name, $pwd) {
 
 function retrieve_user_info($id) {
 	$dbconn = db_connect();
-
 	$result = pg_prepare($dbconn, "", 'SELECT * FROM users WHERE id = $1');
 	$result = pg_execute($dbconn, "", array($id));
 
