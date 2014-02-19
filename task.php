@@ -30,17 +30,22 @@ if (isset($_REQUEST['submit']) && ($_REQUEST['submit'] == "Do")) {
 	$row = retrieve_task_info($_REQUEST['taskid']);
 	do_task($_REQUEST['taskid'], $row['remainingslot'] - 1);
 }
+
 //reload for display
 $row = retrieve_user_info($_SESSION['valid_user_id']);
 $tasks = retrieve_tasks_info($_SESSION['valid_user_id']);
 
 
 // Create a task 
-if (isset($_REQUEST['submit']) && $_REQUEST['submit'] =='New Task') {
-	if (add_task($_SESSION['valid_user_id'], $_REQUEST['title'], $_REQUEST['description'], $_REQUEST['duration'])) {
-		$su_msg = "Create successfully!<br/>Reloading...";
-		$tasks = retrieve_tasks_info($_SESSION['valid_user_id']);
-		$_REQUEST['mode'] = 'create';
+if (isset($_REQUEST['submit']) && $_REQUEST['submit'] =='Create') {
+	if (is_numeric($_REQUEST['duration']) && ($_REQUEST['duration']>=1 && $_REQUEST['duration']<=20)) {
+		if (add_task($_SESSION['valid_user_id'], $_REQUEST['title'], $_REQUEST['description'], $_REQUEST['duration'])) {
+			$su_msg = "Create successfully!<br/>Reloading...";
+			$tasks = retrieve_tasks_info($_SESSION['valid_user_id']);
+			$_REQUEST['mode'] = 'create';
+		} else {
+			$er_msg = "Error!";
+		}
 	} else {
 		$er_msg = "Error!";
 	}
@@ -54,17 +59,23 @@ if (isset($_REQUEST['mode']) && $_REQUEST['mode'] =='create') {
 //updating a task
 if ((isset($_REQUEST['task_id'])) && isset($_REQUEST['mode'])  && $_REQUEST['mode']=="edit" ) {
 	if (isset($_REQUEST['submit']) && ($_REQUEST['submit'] == "Update")) {
-		$row = retrieve_task_info($_REQUEST['task_id']);
-		if (update_task($_REQUEST['task_id'], $_REQUEST['title'], $_REQUEST['description'], $_REQUEST['duration'], $row['remainingslot'] + $_REQUEST['duration'] - $row['totalslot'])){
-			$su_msg = "Update successfully!<br/>Reloading...";
+		if (is_numeric($_REQUEST['duration']) && ($_REQUEST['duration']>=1 && $_REQUEST['duration']<=20)) {
+			$row = retrieve_task_info($_REQUEST['task_id']);
+			if (update_task($_REQUEST['task_id'], $_REQUEST['title'], $_REQUEST['description'], $_REQUEST['duration'], $row['remainingslot'] + $_REQUEST['duration'] - $row['totalslot'])){
+				$su_msg = "Update successfully!<br/>Reloading...";
+			} else {
+				$er_msg = "Error!";
+			}
 		} else {
-			$er_msg = "Error!";
+			$er_msg = "Please enter an valid number bewteen 1 and 20 for the time slot.";
 		}
+		
 	}
 	$task = retrieve_task_info($_REQUEST['task_id']);
 	require('view/task_edit.view.php');
 	exit();
 }
+
 
 require('view/task.view.php');
 

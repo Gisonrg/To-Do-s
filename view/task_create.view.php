@@ -30,11 +30,11 @@
 					<label for="name">Title</label>
 					<input type="text" name="title" placeholder="Your task title" required="required" autofocus="">
 					<br/>
-					<label for="name">Description</label>
-					<textarea name="description" rows="3" placeholder="Your description for the task" required=""></textarea>
+					<label for="description">Description</label>
+					<textarea  id ="description" name="description" style="text-align:left" rows="5" placeholder="Your description for the task" required=""></textarea>
 					<br/>
 					<label for="name" id="label-name" size="10">Slot (30 min as a unit)</label>
-					<input id="input-number" type="number" name="duration" min="1" max="20" />
+					<input id="input-number" type="text" name="duration"/>
 					<br />
 					<br />
 					<input type="submit" class="button button-input" name="submit" value="Create">

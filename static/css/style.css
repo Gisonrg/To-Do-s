@@ -371,8 +371,7 @@ a#found-psw:hover {
 }
 
 
-.task-update ,.task-create,  .view-warning, .view-news, #view_account {
-
+.task-update ,.task-create,  .view-warning, #view_account {
 	width: 100%;
 	margin: auto;
 	padding: 0 0 10px;
@@ -483,16 +482,16 @@ a#found-psw:hover {
 }
 
 
-#label-name {
+/*#label-name {
 	margin-top: 10px;
 	width: 28%;
 	height: 20px;
-}
-#input-number {
+}*/
+/*#input-number {
 	margin-top: 10px;
 	width: 60%;
 	padding: 10px;
-}
+}*/
 
 
 
@@ -568,6 +567,7 @@ a#found-psw:hover {
     min-width: 40%;
     font-family: "Lato";
     font-size: 15px;
+    height: 20%;
 }
 
 #tag {

@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-	<html lang="en">
+
 	<div class="view-news">
 			<div id='tag'>What's happening</div>
 			<?php
@@ -21,4 +20,3 @@
 			?>
 			</div>
 		</div>			
-	</html>

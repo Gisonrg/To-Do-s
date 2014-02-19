@@ -42,6 +42,23 @@ function retrieve_ongoing_tasks_info($user_id) {
 	}
 }
 
+function retrieve_past_tasks_info($user_id) {
+	$dbconn = db_connect();
+	$result = pg_prepare($dbconn, "", 'SELECT * FROM tasks WHERE userid = $1 and remainingslot <= 0');
+	$result = pg_execute($dbconn, "", array($user_id));
+
+
+	while ($row = pg_fetch_array($result)) {
+		$tasks[] = $row;
+	}
+	if (!isset($tasks)) {
+		return false;
+	} else {
+		usort($tasks, "tasks_sort");
+		return $tasks;
+	}
+}
+
 function retrieve_task_info($task_id) {
 	$dbconn = db_connect();
 
@@ -123,4 +140,5 @@ function do_task($id, $remainingslot) {
 		return false;
 	}
 }
+
 ?>

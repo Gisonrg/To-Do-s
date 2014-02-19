@@ -27,10 +27,7 @@
 			<div id='tag'>What's ongoing</div>
 			<form id="task-option" action="" method="post" >
 				<input type="hidden" name="mode" value="create">
-				<input type="submit" class="button button-input" value="New Task">
-				<input type="submit" class="button button-input" value="Show all">
-				<input type="submit" class="button button-input" value="Ongoing Task">
-				<input type="submit" class="button button-input" value="Past Task">
+				<input type="submit" name="submit" class="button button-input" value="New Task">
 			</form>
 			<?php if (!$tasks) {?>
 				<div>You don't have any task to do!</div>
@@ -50,23 +47,30 @@
 						$progress = floor((1 - $tasks[$i]['remainingslot']/$tasks[$i]['totalslot']) * 100);
 						if ($progress<10) {
 							echo "0".$progress;
+						} else if ($progress>=100) {
+							echo "100";
 						} else {
 							echo $progress;
 						}
 						?>/100%</span>
 							<input type="hidden" name="taskid" value="<?php echo($tasks[$i]['id']) ?>">
-						<? if ($remain!=0) { ?>
+						<? if ($remain>0) { ?>
 							<input type="submit" class="button-do" name="submit" value="Do">
 						<?}?>
 						</form>
 
 						<div id="progressbar">
-      						<div id="progressbar-percentage" style="width: <?php echo((1 - $tasks[$i]['remainingslot']/$tasks[$i]['totalslot']) * 100)?>%">
+      						<div id="progressbar-percentage" style="width: <?php 
+      						if ($progress<0 || $progress>=100) {
+								echo "100%";
+							} else {
+								echo $progress.'%';
+							}?>">
     						</div>
     					</div>
     					<?php 
     					
-    					if ($remain!=0) {
+    					if ($remain>0) {
     						?>
 							<div id="remaining-time">Estimated remaining time: <?echo " $remain mintes"?></div>
     						<?
