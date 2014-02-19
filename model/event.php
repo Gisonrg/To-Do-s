@@ -1,7 +1,8 @@
 <?php
 function generate_time() {
+	ini_set('date.timezone','Asia/Singapore');
 	$localtime = localtime(time(), true);
-	$msg = "<a class=\"news-time\">".($localtime['tm_year'] + 1900)."-".($localtime['tm_mon'] + 1)."-".($localtime['tm_mday'] + 1)." ".($localtime['tm_hour']-17).":".$localtime['tm_min'].":".$localtime['tm_sec']."</a>";
+	$msg = "<a class=\"news-time\">".($localtime['tm_year'] + 1900)."-".($localtime['tm_mon'] + 1)."-".($localtime['tm_mday'] + 1)." ".($localtime['tm_hour']).":".$localtime['tm_min'].":".$localtime['tm_sec']."</a>";
 	return $msg;
 }
 
