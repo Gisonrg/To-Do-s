@@ -26,5 +26,6 @@ CREATE TABLE tasks (
 DROP TABLE events;
 CREATE TABLE events (
 	id serial PRIMARY KEY NOT NULL,
+	time text,
 	content text
 );

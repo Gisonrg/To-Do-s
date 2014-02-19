@@ -41,21 +41,7 @@
 			</div>
 			<br />
 			<br />
-			
-			<div class="view-news">
-			<div id='tag'>What's happening</div>
-			<?php
-			if (!$events) {
-				echo "<section>Nothing is happening around!</section>";
-			} else {
-				for ($i = 0; $i < count($events); $i++) { ?>
-					<section><?echo  $events[$i]['content']; ?></section>
-			<?php }
-			}
-
-			?>
-			</div>
-		</div>			
+			<?php require('news.view.php'); ?>
 
 		<!-- End of container -->	
 		</div>
