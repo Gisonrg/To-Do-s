@@ -26,4 +26,8 @@
 	            ?>
 	        </ul>
 	   </nav>
+	   <div class="topheader logo">
+	   <p>Do-It</p>
+	   <small>A simple, effecient todo list.</small>
+	   </div>
 </div>

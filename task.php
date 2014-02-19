@@ -26,7 +26,7 @@ $tasks = retrieve_tasks_info($_SESSION['valid_user_id']);
 
 //do a task
 //detect user do task
-if (isset($_REQUEST['submit']) && ($_REQUEST['submit'] == "do")) {
+if (isset($_REQUEST['submit']) && ($_REQUEST['submit'] == "Do")) {
 	$row = retrieve_task_info($_REQUEST['taskid']);
 	do_task($_REQUEST['taskid'], $row['remainingslot'] - 1);
 }

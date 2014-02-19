@@ -7,19 +7,19 @@
 		<div class="container container-pad">	
 			<div class="full-page">
 			<br />
-			<span class='tag'>&nbsp;Wat's new&nbsp;</span>
-			<table class="view-news">
+		<div class="view-news">
+ 			<div id='tag'>Wat's happening</div>
 				<?php
-				if (count($events) == 0) {
-					echo "no news!";
+				if (!$events ) {
+					echo "<section>Nothing is happening around!</section>";
 				} else {
 					for ($i = 0; $i < count($events); $i++) {
-						echo "<tr><td>".$events[$i]['content']."</td></tr>";
+						echo "<section>".$events[$i]['content']."</section>";
 					}
 				}
 
 				?>
-			</table>
+			</div>
 			</div>
 
 		<!-- End of container -->	

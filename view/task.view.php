@@ -55,7 +55,7 @@
 						<?if ($tasks[$i]['remainingslot'] > 0) {?>
 							 <td><form action="" method="post">
 							 <input type="hidden" name="taskid" value="<?echo $tasks[$i]['id']?>">
-							 <input type="submit" name="submit" value="do">
+							 <input type="submit" class="button block" name="submit" value="Do">
 							 </form></td>
 							 <td>Ongoing</td>
 						<?} else {?>

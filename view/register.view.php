@@ -15,7 +15,7 @@
 				</div>
 			<?php } ?>
 					<div class="register_form">
-					  <h2>New User Register</h2>   
+					<div id="tag">New User Register</div>	
 					  <form method="post" action="" role="form">
 					    <fieldset>
 					    <label for="name">User Name</label>
@@ -28,7 +28,7 @@
 					    <input type="password" id="password" name="password" placeholder="Password" required="">
 					    <br/>
 					    </fieldset>
-					    <input type="submit" name="submit" value="Sign Up">
+					    <input type="submit" name="submit" class="button button-input" value="Sign Up">
 					  </form>
 					</div>
 			<?php  } else { 

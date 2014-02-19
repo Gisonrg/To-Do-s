@@ -15,7 +15,7 @@
 			<?php } ?>
 							    
 		        <div class="login_form">
-		            <h2>Please Sign In</h2>
+		            <div id="tag">Please Sign In</div>	
 		            <form method="post" role="form">
 
 		                <fieldset>
@@ -26,12 +26,15 @@
 		                    <input type="password" name="password" placeholder="Password" required="">
 		                    <br />
 		                    <p>
-		                        <a href="find_password.php">Forget the password?</a>
+		                        <a id="found-psw" href="register.php">Forgot your password?</a>
+		                        <a id="found-psw" href="register.php">Need an account?</a>
 		                    </p>
 		                    <br />
 		                </fieldset>
-		                <input type="submit" name="submit" value="Login">
+		                <input type="submit" class="button button-input" name="submit" value="Login">
 		            </form>
+						
+
 		        </div>
 
 		    
