@@ -320,7 +320,7 @@ a#found-psw:hover {
 	margin-bottom: 5px;
 }
 
-#view_account {
+ {
 	width: 100%;
 	margin: auto;
 	padding: 10px;
@@ -353,24 +353,7 @@ a#found-psw:hover {
 	
 }
 
-#view_account input[type="submit"] {
-	font-size: 1em;
-	background: #E48F8F;
-    border: none;
-    padding: 10px 25px 10px 25px;
-    color: #FFF;
-    margin-left: 5%;
-    max-width: 50%;
-    min-width: 30%;
-    font-family: Georgia;
-    margin-bottom: 5%; 
-}
-#view_account > h2 {
-	margin: 20px;
-}
-#view_account .button:hover {
-	background: #CF7A7A;
-}
+
 #change_password {
 	border-style: dashed;
 	border-width: 2px;
@@ -384,7 +367,9 @@ a#found-psw:hover {
 	color: black;
 }
 
-.task-update ,.task-create,  .view-warning {
+
+.task-update ,.task-create,  .view-warning, .view-news, #view_account {
+
 	width: 100%;
 	margin: auto;
 	padding: 0 0 10px;
@@ -460,20 +445,10 @@ a#found-psw:hover {
 	margin-bottom: 10px;
 }
 
-
-
 #task-option {
-	margin-bottom: 3%;
-}
-#task-option .button {
-	background: #E48F8F;
-    border: none;
-    padding: 10px 25px 10px 25px;
-    color: #FFF;
-    font-size: 1em;
-}
-#task-option .button:hover {
-	background: #CF7A7A;
+	text-align: center;
+	padding: 2%;
+	width: 100%;
 }
 
 .footer {
@@ -588,6 +563,7 @@ a#found-psw:hover {
 	display: inline-block;
 	padding:  10px;
 	text-align: right;
+	padding-left: 39%;
 }
 
 .button-do {
@@ -610,6 +586,7 @@ a#found-psw:hover {
 
 
 .button-input {
+	text-align:center;
 	width:20%;
 	font-family: "Lato";
 }
@@ -623,6 +600,10 @@ a#found-psw:hover {
 	display: block;
 }
 
+#account-form {
+	text-align: center;
+	padding: 10px;
+}
 
 #remaining-time {
 	text-align: center;
@@ -644,8 +625,8 @@ a#found-psw:hover {
    border-radius: 18px;
 }
 #task-status {
+	margin-left: 10px;
 	display: inline-block;
-	margin-left: 37%;
 	color: white;
 }
 

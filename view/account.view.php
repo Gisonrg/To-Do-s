@@ -26,8 +26,8 @@
 				
 			
 				<div id="view_account">
-				    <h2>Update Your Information</h2>
-				    <form method="post" action="">
+					<div id="tag">Update Your Information</div>
+				    <form id="account-form" method="post" action="">
 				        <label for="name">
 				            <strong>User Name</strong>
 				        </label>
@@ -55,7 +55,7 @@
 				        </section>
 				        <br/>
 
-				        <input type="submit" class="button" name="submit" value="Update">
+				        <input type="submit" class="button button-input" name="submit" value="Update">
 				    </form>
 				</div>
 		     
