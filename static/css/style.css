@@ -393,8 +393,8 @@ a#found-psw:hover {
 	background-color: #f7f5fa;
 	box-shadow: 10px 10px 5px #888888;
 	/*background-color: #34495e;*/
-	text-align: center;
-}
+/*	text-align: center;
+*/}
 
 .view-news section{
 	text-align: center;
@@ -405,13 +405,40 @@ a#found-psw:hover {
 #task-item {
 	margin: 10px auto;
 	width: 80%;
-	padding: 10px;
-	border-radius: 10px;
-	/*border: solid;*/
+	padding-top: 6px;
+	padding-bottom: 5px;
+	border-radius: 18px;
 	background-color: #1ABC9C;
 }
 
+#task-title {
+	display: inline-block;
+	/* W3C syntax */
+	border-top-left-radius: 0px;
+	border-top-right-radius: 15px;
+	border-bottom-right-radius: 0px;
+	border-bottom-left-radius:  0px;
+	height: 30px;
+	text-align: left;
+	padding-left: 20px;
+	width: 40%;
+	background-color: #ECF0F1;
+	margin-bottom: 20px;
+}
+#task-description { 
+	display: inline-block;
+	height: 30px;
+	text-align: center;
+	width: 40%;
+	background-color: #ECF0F1;
+	margin-bottom: 10px;
+}
 
+#task-title a:link{
+	line-height: 30px;
+	text-decoration: none;
+	color: inherit;
+}
 
 
 #task-option {
@@ -534,6 +561,34 @@ a#found-psw:hover {
 	font-size: 17px;
 }
 
+
+#task-do-form {
+	height: 30px;
+	width: 58%;
+	display: inline-block;
+	padding:  10px;
+	text-align: right;
+}
+
+.button-do {
+	display: inline;
+	width:40px;
+	height:40px;
+	border-radius:20px;
+	font-size:20px;
+	color:#fff;
+	text-align:center;
+	text-decoration:none;
+	background:#F1C40F;
+	border: none;
+}
+
+.button-do:hover {
+	background:#F39C12;
+}
+
+
+
 .button-input {
 	width:20%;
 	font-family: "Lato";
@@ -548,25 +603,25 @@ a#found-psw:hover {
 	display: block;
 }
 
+
+
 #progressbar {
+  margin: 0 auto;
   background-color: white;
-  border-radius: 18px; /* (height of inner div) / 2 + padding */
+  border-radius: 15px; /* (height of inner div) / 2 + padding */
   padding: 3px;
-  width: 50%;
+  text-align: center;
+  width: 98%;
 }
 
 #progressbar-percentage {
-    text-align: center;
     padding-top:5px;
-}
-#progressbar-percentage>span {
-        display: inline-block;
-        position: absolute;
-        width: 100%;
-        left: 0;
-}
-#progressbar > div {
-   background-color: #F1C40F;
+    background-color: #F1C40F;
    height: 30px;
-   border-radius: 10px;
+   border-radius: 18px;
+}
+#progressbar > span {
+	position: absolute;
+	
+	z-index: 1;
 }

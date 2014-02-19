@@ -20,19 +20,20 @@
 					for ($i = 0; $i < count($tasks); $i++) {
 					?>
 					<div id="task-item">	
-						<div>
+						<div id="task-title">
 							<a href=task.php?mode=edit&task_id=<?echo $tasks[$i]['id']?>><?php echo($tasks[$i]['title']);?></a>
 						</div>
-						<div id="progressbar">
-      						<div id="progressbar-percentage" style="width: <?php echo((1 - $tasks[$i]['remainingslot']/$tasks[$i]['totalslot']) * 100)?>%">
-      						<span><?php echo((1 - $tasks[$i]['remainingslot']/$tasks[$i]['totalslot']) * 100)?>%/100%</span></div>
-    					</div>
-						<div>
-						<form action="" method="post">
+
+						<form action="" method="post" id="task-do-form"> 
 							<input type="hidden" name="taskid" value="<?php echo($tasks[$i]['id']) ?>">
-							<input type="submit" class="button block" name="submit" value="Do">
+							<input type="submit" class="button-do" name="submit" value="Do">
 						</form>
-						</div>
+
+						<div id="progressbar">
+							<span><?php echo floor((1 - $tasks[$i]['remainingslot']/$tasks[$i]['totalslot']) * 100)?>/100%</span>
+      						<div id="progressbar-percentage" style="width: <?php echo((1 - $tasks[$i]['remainingslot']/$tasks[$i]['totalslot']) * 100)?>%">
+    						</div>
+    					</div>
 					</div>
 					<?php }		
 				}
