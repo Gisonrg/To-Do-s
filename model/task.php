@@ -1,5 +1,13 @@
 <?php
 
+function tasks_sort($a, $b) {
+	if ($a['id'] == $b['id']) {
+		return 0;
+	} else {
+		return $a['id'] > $b['id']? 1 : -1;
+	}
+}
+
 function retrieve_tasks_info($user_id) {
 	$dbconn = db_connect();
 	$result = pg_prepare($dbconn, "", 'SELECT * FROM tasks WHERE userid = $1');
@@ -12,6 +20,7 @@ function retrieve_tasks_info($user_id) {
 	if (!isset($tasks)) {
 		return false;
 	} else {
+		usort($tasks, "tasks_sort");
 		return $tasks;
 	}
 }
@@ -28,6 +37,7 @@ function retrieve_ongoing_tasks_info($user_id) {
 	if (!isset($tasks)) {
 		return false;
 	} else {
+		usort($tasks, "tasks_sort");
 		return $tasks;
 	}
 }
