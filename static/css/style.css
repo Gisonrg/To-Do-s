@@ -570,4 +570,9 @@ a#found-psw:hover {
    height: 30px;
    border-radius: 10px;
 }
-
+.news-content {
+	width: 60%;
+}
+#news-table {
+	text-align: center;
+}

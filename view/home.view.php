@@ -47,12 +47,13 @@
 			if (!$events) {
 				echo "<section>Nothing is happening around!</section>";
 			} else {
-				echo "<table>";
+				echo "<div class=\"news\"><table id=\"news-table\">";
 				for ($i = 0; $i < count($events); $i++) { ?>
-					<tr><td><?echo $events[$i]['time']; ?></td>
-						<td><?echo $events[$i]['content']; ?></td></tr>
+					<tr><td><?echo "should have icon here"; ?></td>
+						<td class="news-content"><?echo $events[$i]['content']; ?></td>
+						<td><?echo $events[$i]['time']; ?></td></tr>
 			<?php }
-				echo "</table>";
+				echo "</table></div>";
 			}
 
 			?>
