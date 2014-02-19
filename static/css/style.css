@@ -384,10 +384,18 @@ a#found-psw:hover {
 	color: black;
 }
 
-.task-update ,.task-create,  .view-warning, .view-news{
+.task-update ,.task-create,  .view-warning, .view-news {
 	width: 100%;
 	margin: auto;
 	padding: 0 0 10px;
+	background-color: #f7f5fa;
+	box-shadow: 10px 10px 5px #888888;
+}
+.view-leaderboard {
+	width: 100%;
+	margin: auto;
+	padding: 0 0 10px;
+	padding-left: 120px;
 	background-color: #f7f5fa;
 	box-shadow: 10px 10px 5px #888888;
 }

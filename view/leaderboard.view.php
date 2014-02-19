@@ -17,8 +17,8 @@
 					} else {
 						for ($i = 0; $i < count($leaders); $i++) {
 							echo "<tr><td><img class=\"leaderboard-icon\" src=\"static\img\\no".($i+1).".png\"></td>";
-							echo "<td>".$leaders[$i]['name']."</td>";
-							echo "<td>Level: ".$leaders[$i]['level']."</td></tr>";
+							echo "<td>&nbsp;&nbsp;&nbsp;".$leaders[$i]['name']."</td>";
+							echo "<td>&nbsp;&nbsp;&nbsp;&nbsp;Level: ".$leaders[$i]['level']."</td></tr>";
 						}
 					}
 				?>
