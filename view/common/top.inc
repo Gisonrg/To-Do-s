@@ -27,7 +27,7 @@
 	        </ul>
 	   </nav>
 	   <div class="topheader logo">
-	   <p>Do-It</p>
-	   <small>A simple, effecient todo list.</small>
+	   <p><img class="logo-pic" src="static/img/logo.png" alt=""></img>Do-It</p>
+	   <small>&nbsp;&nbsp;A simple, effecient and free to-do list.</small>
 	   </div>
 </div>

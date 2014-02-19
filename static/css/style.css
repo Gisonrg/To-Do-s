@@ -8,7 +8,7 @@
 
 body {
 	color: #34495e;
-	background-color: #ffffff;
+	background-color: #edf2ff;
 	font-family: "Lato","Helvetica Neue",Helvetica, sans-serif;
 }
 
@@ -34,6 +34,11 @@ body {
 	font-size: 22px;
 	font:300 20px "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #BDC3C7;
+}
+.topheader .logo-pic {
+	display: inline-block;
+	height: 130px;
+	width: 130px;
 }
 
 nav {
