@@ -38,7 +38,7 @@
 						<input id="input-number" type="text" name="duration" value="<?php echo $task['totalslot']?>"/>
 					<br />
 					<br />						
-					<input type="submit" class="button button-input"	name="submit" value="Update">
+					<input type="submit" class="button button-input" name="submit" value="Update">
 					</form>
 				</div>
 		    </div>

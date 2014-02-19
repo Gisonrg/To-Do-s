@@ -47,7 +47,7 @@ if (isset($_REQUEST['submit']) && $_REQUEST['submit'] =='Create') {
 			$er_msg = "Error!";
 		}
 	} else {
-		$er_msg = "Error!";
+		$er_msg = "Please enter an valid number between 1 and 20!";
 	}
 }
 
@@ -72,6 +72,7 @@ if ((isset($_REQUEST['task_id'])) && isset($_REQUEST['mode'])  && $_REQUEST['mod
 		
 	}
 	$task = retrieve_task_info($_REQUEST['task_id']);
+	$row = retrieve_user_info($_SESSION['valid_user_id']);
 	require('view/task_edit.view.php');
 	exit();
 }

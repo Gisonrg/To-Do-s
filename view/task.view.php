@@ -28,6 +28,8 @@
 			<form id="task-option" action="" method="post" >
 				<input type="hidden" name="mode" value="create">
 				<input type="submit" name="submit" class="button button-input" value="New Task">
+				<input type="submit" name="submit" class="button button-input" value="Show Ongoing">
+				<input type="submit" name="submit" class="button button-input" value="New Task">
 			</form>
 			<?php if (!$tasks) {?>
 				<div>You don't have any task to do!</div>
