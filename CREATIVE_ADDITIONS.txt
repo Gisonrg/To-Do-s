@@ -1,0 +1,17 @@
+CREATIVE_ADDITIONS.TXT
+
+Apart from the basic functionality, we 
+add new features like EXP and levels,
+when user finish a task they will gain 
+corresponding exp and when they have 
+enough exp, their level will be increased.
+
+Along with the exp, we also build leaderboard
+for them to show off, as we list out the top
+5 users in terms of their exp.
+
+We also create a notification field to show
+what happened. The events include “”New user 
+sign up”, “Somebody creates a new task”, “
+Somebody finishes a task”, and “somebody level
+up”.
