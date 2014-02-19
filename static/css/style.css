@@ -367,14 +367,16 @@ a#found-psw:hover {
 	color: black;
 }
 
+
 .task-update ,.task-create,  .view-warning, .view-news, #view_account {
+
 	width: 100%;
 	margin: auto;
 	padding: 0 0 10px;
 	background-color: #f7f5fa;
 	box-shadow: 10px 10px 5px #888888;
 }
-.view-leaderboard {
+.view-leaderboard, .news {
 	width: 100%;
 	margin: auto;
 	padding: 0 0 10px;
@@ -442,8 +444,6 @@ a#found-psw:hover {
 	background-color: #ECF0F1;
 	margin-bottom: 10px;
 }
-
-
 
 #task-option {
 	text-align: center;
@@ -605,6 +605,9 @@ a#found-psw:hover {
 	padding: 10px;
 }
 
+#remaining-time {
+	text-align: center;
+}
 
 #progressbar {
   margin: 0 auto;
@@ -628,10 +631,16 @@ a#found-psw:hover {
 }
 
 #news-table {
-	text-align: center;
+	text-align: left;
 }
 .leaderboard-icon {
 	width: 80px;
 	height: 80px;
 }
-
+.news_icon {
+	width: 60px;
+	height: 60px;
+}
+#warn {
+	text-align: center;
+}

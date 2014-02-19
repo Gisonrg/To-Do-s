@@ -10,7 +10,6 @@ require_once("model/event.php");
 //set highlight item in the navigation bar
 $_SESSION['active']='Home';
 
-$events = retrieve_current_events();
 
 if (isset($_SESSION['valid_user_id'])) {
 
@@ -23,6 +22,7 @@ if (isset($_SESSION['valid_user_id'])) {
 	//reload for display
 	$row = retrieve_user_info($_SESSION['valid_user_id']);
 	$tasks = retrieve_ongoing_tasks_info($_SESSION['valid_user_id']);
+	$events = retrieve_current_events();
 
 	require('view/home.view.php');
 } else {

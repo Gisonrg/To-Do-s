@@ -12,7 +12,7 @@
 			<div class="view-task">
 			<div id='tag'>What's ongoing</div>
 			<?php if (!$tasks) {?>
-				<div>You don't have any task to do!</div>
+				<div id='warn'>You don't have any task to do!</div>
 			<?php
 				} else {
 			?>
@@ -40,6 +40,8 @@
       						<div id="progressbar-percentage" style="width: <?php echo((1 - $tasks[$i]['remainingslot']/$tasks[$i]['totalslot']) * 100)?>%">
     						</div>
     					</div>
+
+    					<div id="remaining-time">Estimated remaining time: <?php echo ($tasks[$i]['remainingslot']*30)." minutes"?></div>
 					</div>
 					<?php }		
 				}
