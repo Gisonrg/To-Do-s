@@ -102,8 +102,8 @@ function retrieve_leader_info() {
 	}
 	if (isset($leaders)) {
 		usort($leaders, "leaders_sort");
-		if (count($leaders) > 10) {
-			$leaders = array_slice($leaders, 0, 9);
+		if (count($leaders) > 5) {
+			$leaders = array_slice($leaders, 0, 5);
 		}
 		return $leaders;
 	} else {
