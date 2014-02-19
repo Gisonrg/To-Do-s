@@ -384,7 +384,7 @@ a#found-psw:hover {
 	color: black;
 }
 
-.task-update ,.task-create,  .view-warning, .view-news{
+.task-update ,.task-create,  .view-warning, .view-news, .view-leaderboard{
 	width: 100%;
 	margin: auto;
 	padding: 0 0 10px;
