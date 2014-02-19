@@ -47,9 +47,12 @@
 			if (!$events) {
 				echo "<section>Nothing is happening around!</section>";
 			} else {
+				echo "<table>";
 				for ($i = 0; $i < count($events); $i++) { ?>
-					<section><?echo  $events[$i]['content']; ?></section>
+					<tr><td><?echo $events[$i]['time']; ?></td>
+						<td><?echo $events[$i]['content']; ?></td></tr>
 			<?php }
+				echo "</table>";
 			}
 
 			?>

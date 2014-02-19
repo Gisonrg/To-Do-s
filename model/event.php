@@ -7,10 +7,11 @@ function generate_time() {
 
 function event_new_user($userid) {
 	$row = retrieve_user_info($userid);
-	$msg = generate_time()." <p class=\"news-username\">".$row['name']."</p> joined us!";
+	$t = "At ".generate_time();
+	$msg = " <p class=\"news-username\">".$row['name']."</p> joined us!";
 	$dbconn = db_connect();		
-	$result = pg_prepare($dbconn, "new_user", 'INSERT INTO events VALUES(nextval(\'events_id_seq\'), $1)');
-	$result = pg_execute($dbconn, "new_user", array($msg));
+	$result = pg_prepare($dbconn, "new_user", 'INSERT INTO events VALUES(nextval(\'events_id_seq\'), $1, $2)');
+	$result = pg_execute($dbconn, "new_user", array($t, $msg));
 
 	if ($result) {
 		return true;
@@ -21,10 +22,11 @@ function event_new_user($userid) {
 
 function event_level_up($userid) {
 	$row = retrieve_user_info($userid);
-	$msg = generate_time()." <p class=\"news-username\">".$row['name']."</p> reached level <p class=\"news-level\">".$row['level'] ."</p>!";
+	$t = "At ".generate_time();
+	$msg = " <p class=\"news-username\">".$row['name']."</p> reached level <p class=\"news-level\">".$row['level'] ."</p>!";
 	$dbconn = db_connect();		
-	$result = pg_prepare($dbconn, "level_up", 'INSERT INTO events VALUES(nextval(\'events_id_seq\'), $1)');
-	$result = pg_execute($dbconn, "level_up", array($msg));
+	$result = pg_prepare($dbconn, "level_up", 'INSERT INTO events VALUES(nextval(\'events_id_seq\'), $1, $2)');
+	$result = pg_execute($dbconn, "level_up", array($t, $msg));
 
 	if ($result) {
 		return true;
@@ -36,10 +38,11 @@ function event_level_up($userid) {
 function event_new_task($taskid) {
 	$task = retrieve_task_info($taskid);
 	$row = retrieve_user_info($task['userid']);
-	$msg = generate_time()." <p class=\"news-username\">".$row['name']."</p> started task: <p class=\"news-task\">".$task['title']."</p>!";
+	$t = "At ".generate_time();
+	$msg = " <p class=\"news-username\">".$row['name']."</p> started task: <p class=\"news-task\">".$task['title']."</p>!";
 	$dbconn = db_connect();		
-	$result = pg_prepare($dbconn, "new_task", 'INSERT INTO events VALUES(nextval(\'events_id_seq\'), $1)');
-	$result = pg_execute($dbconn, "new_task", array($msg));
+	$result = pg_prepare($dbconn, "new_task", 'INSERT INTO events VALUES(nextval(\'events_id_seq\'), $1, $2)');
+	$result = pg_execute($dbconn, "new_task", array($t, $msg));
 
 	if ($result) {
 		return true;
@@ -51,10 +54,11 @@ function event_new_task($taskid) {
 function event_task_completed($taskid) {
 	$task = retrieve_task_info($taskid);
 	$row = retrieve_user_info($task['userid']);
-	$msg = generate_time()." <p class=\"news-username\">".$row['name']." completed task: <p class=\"news-task\">".$task['title']."</p>!";
+	$t = "At ".generate_time();
+	$msg = " <p class=\"news-username\">".$row['name']." completed task: <p class=\"news-task\">".$task['title']."</p>!";
 	$dbconn = db_connect();		
-	$result = pg_prepare($dbconn, "task_completed", 'INSERT INTO events VALUES(nextval(\'events_id_seq\'), $1)');
-	$result = pg_execute($dbconn, "task_completed", array($msg));
+	$result = pg_prepare($dbconn, "task_completed", 'INSERT INTO events VALUES(nextval(\'events_id_seq\'), $1, $2)');
+	$result = pg_execute($dbconn, "task_completed", array($t, $msg));
 
 	if ($result) {
 		return true;

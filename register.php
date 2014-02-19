@@ -27,6 +27,7 @@ if (isset($_SESSION['valid_user_id'])) {
 	if ($register_result  >= 0) {
 
 		$_SESSION['valid_user_id'] = $register_result;
+		event_new_user($register_result);
 		$msg = "Register successfully!<br/>You have now logged in as <strong>".$_POST['name']."</strong>.<br/>";
 		$msg = $msg."You are now being redirect to the homepage...";
 		
