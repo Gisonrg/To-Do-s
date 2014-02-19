@@ -581,3 +581,7 @@ a#found-psw:hover {
 #news-table {
 	text-align: center;
 }
+.leaderboard-icon {
+	width: 80px;
+	height: 80px;
+}
