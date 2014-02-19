@@ -236,6 +236,9 @@ a#found-psw:hover {
 	width: 75%;
 	float: left;
 }
+.content-about {
+	width: 100%;
+}
 
 .full-page {
 	padding: 10px;
@@ -383,6 +386,30 @@ a#found-psw:hover {
 	padding-left: 120px;
 	background-color: #f7f5fa;
 	box-shadow: 10px 10px 5px #888888;
+}
+.view-about {
+	width: 100%;
+	margin: auto;
+	padding: 0 0 10px;
+	text-align: center;
+}
+
+.view-about p{
+	font-size: 5px;
+	font:900 90px/100px "Helvetica Neue", Helvetica, Arial, sans-serif;
+	letter-spacing:-1px;
+}
+
+.view-about img{
+	display: inline-block;
+	width: 25%;
+	height: 25%;
+}
+
+.view-about h3{
+	font-size: 5px;
+	font:800 50px/80px "Helvetica Neue", Helvetica, Arial, sans-serif;
+	letter-spacing:-1px;
 }
 
 .view-task {
