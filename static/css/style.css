@@ -462,6 +462,10 @@ a#found-psw:hover {
 	color: inherit;
 }
 
+#task-title a:hover{
+	color: #16A085;
+}
+
 
 #task-description { 
 	display: inline-block;
@@ -478,6 +482,20 @@ a#found-psw:hover {
 	width: 100%;
 }
 
+
+#label-name {
+	margin-top: 10px;
+	width: 28%;
+	height: 20px;
+}
+#input-number {
+	margin-top: 10px;
+	width: 60%;
+	padding: 10px;
+}
+
+
+
 .footer {
 	color: white;
 	background-color: #211a2c;
@@ -490,12 +508,13 @@ a#found-psw:hover {
 }
 
 .task-update .task-form ,.task-create .task-form {
-	width: 60%;
+	width: 80%;
 	padding: 10px;
 	margin: 10px auto;
 	background-color: #f7f5fa;
 	text-align: center;
 }
+
 .task-update .task-form > h2 {
 	margin: 20px;
 }
@@ -513,53 +532,42 @@ a#found-psw:hover {
 	width: 13%;
 	text-align: center;
 	vertical-align: middle;
-	padding-bottom: 20%;
 }
 
 .task-update .task-form input[type="text"]
 ,.task-create .task-form input[type="text"] {
-    border: 1px solid #DADADA;
+    border: 2px solid #DADADA;
+    border-radius: 6px;
     color: black;
     height: 30px;
-    width: 50%;
     margin-bottom: 15px;
     margin-left: 5%;
     margin-top: 2px;
     outline: 0 none;
     padding: 3px;
-    max-width: 90%;
-    min-width: 40%;
-    font-family: Georgia;
-    font-size: 1em;
-}
-.task-update .task-form input[type="submit"] 
-,.task-create .task-form input[type="submit"]{
-	font-size: 1em;
-	background: #E48F8F;
-    border: none;
-    padding: 10px 25px 10px 25px;
-    color: #FFF;
-    margin-left: 5%;
     max-width: 70%;
     min-width: 40%;
-    font-family: Georgia;
-    margin-bottom: 5%; 
+    font-family: "Lato";
+    font-size: 15px;
 }
+
+
 
 .task-update .task-form textarea
  ,.task-create .task-form textarea{
-	display: inline-block;
-    border: 1px solid #DADADA;
+    border: 2px solid #DADADA;
+    border-radius: 6px;
     color: black;
-    width: 50%;
+    height: 30px;
+    margin-bottom: 15px;
     margin-left: 5%;
     margin-top: 2px;
     outline: 0 none;
     padding: 3px;
-    max-width: 90%;
+    max-width: 70%;
     min-width: 40%;
     font-family: "Lato";
-    font-size: 1em;
+    font-size: 15px;
 }
 
 #tag {
@@ -634,6 +642,7 @@ a#found-psw:hover {
 
 #remaining-time {
 	text-align: center;
+	color: white;
 }
 
 #progressbar {

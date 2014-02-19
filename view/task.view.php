@@ -39,6 +39,7 @@
 			?>
 			<?php
 					for ($i = 0; $i < count($tasks); $i++) {
+						$remain = $tasks[$i]['remainingslot']*30;
 					?>
 					<div id="task-item">	
 						<div id="task-title">
@@ -54,13 +55,29 @@
 						}
 						?>/100%</span>
 							<input type="hidden" name="taskid" value="<?php echo($tasks[$i]['id']) ?>">
+						<? if ($remain!=0) { ?>
 							<input type="submit" class="button-do" name="submit" value="Do">
+						<?}?>
 						</form>
 
 						<div id="progressbar">
       						<div id="progressbar-percentage" style="width: <?php echo((1 - $tasks[$i]['remainingslot']/$tasks[$i]['totalslot']) * 100)?>%">
     						</div>
     					</div>
+    					<?php 
+    					
+    					if ($remain!=0) {
+    						?>
+							<div id="remaining-time">Estimated remaining time: <?echo " $remain mintes"?></div>
+    						<?
+    					} else {
+    						?>
+    						<div id="remaining-time">Finished</div>
+    						<?
+    					}
+    					?>
+    					
+
 					</div>
 					<?php }		
 				}

@@ -24,18 +24,20 @@
 			} ?>	
 
 		<div class="task-create">
+		<div id='tag'>Creating new task</div>
 				<form  method="post" action="" role="form" class="task-form">
-					<h2>Creating new task</h2>
+					
 					<label for="name">Title</label>
 					<input type="text" name="title" placeholder="Your task title" required="required" autofocus="">
 					<br/>
 					<label for="name">Description</label>
-					<textarea name="description" rows="5" placeholder="Your description for the task" required=""></textarea>
+					<textarea name="description" rows="3" placeholder="Your description for the task" required=""></textarea>
 					<br/>
-					<label for="name">Slot (30 min as a unit)</label>
-					<input type="number" name="duration" min="1" max="20" />
+					<label for="name" id="label-name" size="10">Slot (30 min as a unit)</label>
+					<input id="input-number" type="number" name="duration" min="1" max="20" />
 					<br />
-					<input type="submit" name="submit" value="Create">
+					<br />
+					<input type="submit" class="button button-input" name="submit" value="Create">
 				</form>
 			</div>
 
