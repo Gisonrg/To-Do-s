@@ -413,7 +413,7 @@ a#found-psw:hover {
 	padding-top: 6px;
 	padding-bottom: 5px;
 	border-radius: 18px;
-	background-color: #1ABC9C;
+	background-color: #5e8bb8;
 }
 
 #task-title {
@@ -430,6 +430,19 @@ a#found-psw:hover {
 	background-color: #ECF0F1;
 	margin-bottom: 20px;
 }
+
+#task-title a:link{
+	line-height: 30px;
+	text-decoration: none;
+	color: inherit;
+}
+
+#task-title a:visited{
+	text-decoration: none;
+	color: inherit;
+}
+
+
 #task-description { 
 	display: inline-block;
 	height: 30px;
@@ -439,11 +452,6 @@ a#found-psw:hover {
 	margin-bottom: 10px;
 }
 
-#task-title a:link{
-	line-height: 30px;
-	text-decoration: none;
-	color: inherit;
-}
 
 
 #task-option {
@@ -569,7 +577,6 @@ a#found-psw:hover {
 
 #task-do-form {
 	height: 30px;
-	width: 58%;
 	display: inline-block;
 	padding:  10px;
 	text-align: right;
@@ -584,12 +591,12 @@ a#found-psw:hover {
 	color:#fff;
 	text-align:center;
 	text-decoration:none;
-	background:#F1C40F;
+	background:#34495e;
 	border: none;
 }
 
 .button-do:hover {
-	background:#F39C12;
+	background:#bec4c4;
 }
 
 
@@ -620,15 +627,15 @@ a#found-psw:hover {
 }
 
 #progressbar-percentage {
-    padding-top:5px;
-    background-color: #F1C40F;
+   padding-top:5px;
+   background-color: #34495e;
    height: 30px;
    border-radius: 18px;
 }
-#progressbar > span {
-	position: absolute;
-	
-	z-index: 1;
+#task-status {
+	display: inline-block;
+	margin-left: 37%;
+	color: white;
 }
 
 #news-table {
