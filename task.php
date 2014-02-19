@@ -36,7 +36,7 @@ $tasks = retrieve_tasks_info($_SESSION['valid_user_id']);
 
 
 // Create a task 
-if (isset($_REQUEST['submit']) && $_REQUEST['submit'] =='Create') {
+if (isset($_REQUEST['submit']) && $_REQUEST['submit'] =='New Task') {
 	if (add_task($_SESSION['valid_user_id'], $_REQUEST['title'], $_REQUEST['description'], $_REQUEST['duration'])) {
 		$su_msg = "Create successfully!<br/>Reloading...";
 		$tasks = retrieve_tasks_info($_SESSION['valid_user_id']);
