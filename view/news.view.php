@@ -8,9 +8,12 @@
 			} else {
 				echo "<div class=\"news\"><table id=\"news-table\">";
 				for ($i = 0; $i < count($events); $i++) { ?>
-					<tr><td><?echo "should have icon here"; ?></td>
-						<td class="news-content"><?echo $events[$i]['content']; ?></td>
-						<td><?echo $events[$i]['time']; ?></td></tr>
+					<tr><td>
+						<?php
+							echo "<img class=\"news_icon\" src=\"static/img/".$events[$i]['type'].".png\">";
+					 	?></td>
+						<td class="news-content"><?echo $events[$i]['content']; ?>
+						<?php echo $events[$i]['time']; ?></td></tr>
 			<?php }
 				echo "</table></div>";
 			}
