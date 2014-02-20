@@ -35,7 +35,13 @@
 						<textarea style="text-align:left" id="description" name="description" rows="3" placeholder="Your description for the task" required=""><?php echo $task['description'];?></textarea>
 						<br/>
 						<label for="name" id="label-name" size="10">Slot (30 min as a unit)</label>
-						<input id="input-number" type="text" name="duration" value="<?php echo $task['totalslot']?>"/>
+						
+					<input id="input-number" type="text" placeholder="Enter a number between 1 and 20"
+					<?
+						if ($er_msg == "Please enter an valid number bewteen 1 and 20 for the time slot.") {
+							echo "style=\"border-color:red\"";
+						} ?> 
+					name="duration" value="<?php echo $task['totalslot']?>"/>
 					<br />
 					<br />						
 					<input type="submit" class="button button-input" name="submit" value="Update">

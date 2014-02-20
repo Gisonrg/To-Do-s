@@ -12,8 +12,10 @@ require_once("model/event.php");
 //set highlight item in the navigation bar
 $_SESSION['active']='Sign Up';
 
+//prepare pre-filled user information
 $username="";
 $email ="";
+//prepare success and error message
 $msg="";
 
 if (isset($_SESSION['valid_user_id'])) {

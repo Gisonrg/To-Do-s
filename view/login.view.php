@@ -26,7 +26,6 @@
 		                    <input type="password" name="password" placeholder="Password" required="">
 		                    <br />
 		                    <p>
-		                        <a id="found-psw" href="register.php">Forgot your password?</a>
 		                        <a id="found-psw" href="register.php">Need an account?</a>
 		                    </p>
 		                    <br />

@@ -28,13 +28,18 @@
 				<form  method="post" action="" role="form" class="task-form">
 					
 					<label for="name">Title</label>
-					<input type="text" name="title" placeholder="Your task title" required="required" autofocus="">
+					<input type="text" name="title" placeholder="Your task title" required="required" autofocus="" value="<?php echo $task['title'];?>">
 					<br/>
 					<label for="description">Description</label>
-					<textarea  id ="description" name="description" style="text-align:left" rows="5" placeholder="Your description for the task" required=""></textarea>
+					<textarea  id ="description" name="description" style="text-align:left" rows="5" placeholder="Your description for the task" required=""><?php echo $task['description'];?></textarea>
 					<br/>
 					<label for="name" id="label-name" size="10">Slot (30 min as a unit)</label>
-					<input id="input-number" type="text" name="duration"/>
+					<input id="input-number" type="text" placeholder="Enter a number between 1 and 20"
+					<?
+						if ($er_msg == "Please enter an valid number bewteen 1 and 20 for the time slot.") {
+							echo "style=\"border-color:red\"";
+						} ?> 
+					name="duration" value="<?php echo $task['totalslot']?>"/>
 					<br />
 					<br />
 					<input type="submit" class="button button-input" name="submit" value="Create">

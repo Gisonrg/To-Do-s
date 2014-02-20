@@ -9,7 +9,7 @@
 	require_once("model/event.php");
 	$_SESSION['active']='Logout';
 	if (!isset($_SESSION['valid_user_id'])) {
-		header("Refresh: 0; url=index.php");
+		header("Refresh: 0; url=login.php");
 		exit;
 	}
 	$su_msg = "You have successfully logged out!<br/>Thanks for using me!";

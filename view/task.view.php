@@ -25,14 +25,24 @@
 
 			<div class="view-task">
 			<div id='tag'>What's ongoing</div>
-			<form id="task-option" action="" method="post" >
-				<input type="hidden" name="mode" value="create">
-				<input type="submit" name="submit" class="button button-input" value="New Task">
-				<input type="submit" name="submit" class="button button-input" value="Show Ongoing">
-				<input type="submit" name="submit" class="button button-input" value="New Task">
-			</form>
+			<div id="button-group">
+				<form id="task-option" action="" method="post" >
+					<input type="hidden" name="mode" value="create">
+					<input type="submit" name="submit" class="button button-input" value="New Task">
+				</form>
+				<form id="task-show" action="" method="post" >
+					<input type="hidden" name="mode" value="show">
+					<input type="submit" name="submit" class="button button-input" value="Show Ongoing">
+					<input type="submit" name="submit" class="button button-input" value="Show Past">
+					<input type="submit" name="submit" class="button button-input" value="Show All">
+				</form>
+			</div>
+					
+			
 			<?php if (!$tasks) {?>
-				<div>You don't have any task to do!</div>
+				<div id="warn">You don't have any task to do!
+				<a href="task.php?mode=create">Create one now</a>
+				</div>
 			<?php
 				} else {
 			?>

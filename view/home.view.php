@@ -12,7 +12,10 @@
 			<div class="view-task">
 			<div id='tag'>What's ongoing</div>
 			<?php if (!$tasks) {?>
-				<div id='warn'>You don't have any task to do!</div>
+				<div id='warn'>You don't have any task to do!
+				<a href="task.php?mode=create">Create one now</a>
+				</div>
+
 			<?php
 				} else {
 			?>

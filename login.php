@@ -18,6 +18,7 @@ $msg="";
 if (isset($_SESSION['valid_user_id'])) {
 	header("Refresh: 0; url=index.php");
 	exit;
+	
 } else if (isset($_POST['submit']) && $_POST['submit'] =='Login') {
 
 	$login_result = user_authenticate($_POST['name'], sha1($_POST['password']));

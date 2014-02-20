@@ -16,6 +16,7 @@
 	$row = retrieve_user_info($_SESSION['valid_user_id']);
 	$tasks = retrieve_ongoing_tasks_info($_SESSION['valid_user_id']);
 
+	//only valid user can visit the file
 	if (isset($_SESSION['valid_user_id'])) {
 		$leaders = retrieve_leader_info();
 		require('view/leaderboard.view.php');

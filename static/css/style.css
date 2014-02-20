@@ -7,6 +7,7 @@
 }
 
 body {
+
 	color: #34495e;
 	background-color: #edf2ff;
 	font-family: "Lato","Helvetica Neue",Helvetica, sans-serif;
@@ -323,17 +324,11 @@ a#found-psw:hover {
 	margin-bottom: 5px;
 }
 
- {
-	width: 100%;
-	margin: auto;
-	padding: 10px;
-	background-color: #f7f5fa;
-	text-align: center;
-	box-shadow: 10px 10px 5px #888888;
-}
+
 #view_account input[type="text"], #view_account input[type="password"],
 #view_account input[type="email"] {
-    border: 1px solid #DADADA;
+    border: 2px solid #DADADA;
+    border-radius: 6px;
     color: black;
     height: 30px;
     margin-bottom: 15px;
@@ -343,8 +338,8 @@ a#found-psw:hover {
     padding: 3px;
     max-width: 70%;
     min-width: 40%;
-    font-family: Georgia;
-    font-size: 1em;
+    font-family: "Lato";
+    font-size: 15px;
 }
 #view_account input[type="text"]:disabled {
 	background-color: #cfcfcf;
@@ -416,13 +411,15 @@ a#found-psw:hover {
 	padding: 0 0 10px;
 	background-color: #f7f5fa;
 	box-shadow: 10px 10px 5px #888888;
-	/*background-color: #34495e;*/
-/*	text-align: center;
-*/}
-
-.view-news section{
-	text-align: center;
+}
+.view-news {
 	margin: 10px auto;
+
+}
+
+.view-news table{
+	margin:0  auto;
+	padding-right: 5%;
 }
 
 
@@ -476,22 +473,17 @@ a#found-psw:hover {
 }
 
 #task-option {
+	margin: 0;
 	text-align: center;
-	padding: 2%;
-	width: 100%;
+	display: inline;
 }
 
 
-/*#label-name {
-	margin-top: 10px;
-	width: 28%;
-	height: 20px;
-}*/
-/*#input-number {
-	margin-top: 10px;
-	width: 60%;
-	padding: 10px;
-}*/
+#task-show {
+	margin: 0;
+	text-align: center;
+	display: inline;
+}
 
 
 
@@ -635,6 +627,12 @@ a#found-psw:hover {
 	display: block;
 }
 
+#button-group {
+	padding: 2%;
+	margin: 2px auto;
+	text-align: center;
+}
+
 #account-form {
 	text-align: center;
 	padding: 10px;
@@ -660,6 +658,7 @@ a#found-psw:hover {
    height: 30px;
    border-radius: 18px;
 }
+
 #task-status {
 	margin-left: 10px;
 	display: inline-block;
@@ -669,6 +668,7 @@ a#found-psw:hover {
 #news-table {
 	text-align: left;
 }
+
 .leaderboard-icon {
 	width: 80px;
 	height: 80px;
@@ -679,4 +679,11 @@ a#found-psw:hover {
 }
 #warn {
 	text-align: center;
+}
+#warn>a:link {
+	color: inherit;
+}
+#warn>a:visited {
+	color: inherit;
+
 }
